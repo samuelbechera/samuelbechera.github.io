@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Samuel Bechera – Portfólio</title>
+<meta name="description" content="Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --muted: #57534e;
+    --border: #e7e5e4;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c0a09;
+      --surface: #1c1917;
+      --text: #f5f5f4;
+      --muted: #a8a29e;
+      --border: #292524;
+      --accent: #60a5fa;
+      --accent-soft: #172554;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c0a09;
+    --surface: #1c1917;
+    --text: #f5f5f4;
+    --muted: #a8a29e;
+    --border: #292524;
+    --accent: #60a5fa;
+    --accent-soft: #172554;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: "Inter", system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+  /* Navigácia */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  nav .logo { font-weight: 700; color: var(--text); }
+  nav ul { display: flex; gap: 20px; list-style: none; }
+  nav ul a { color: var(--muted); font-size: 0.95rem; }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+  @media (max-width: 600px) { nav ul { display: none; } }
+
+  /* Úvod */
+  header.hero { padding: 88px 0 64px; }
+  .hero .tag {
+    display: inline-block; font-size: 0.85rem; font-weight: 500;
+    background: var(--accent-soft); color: var(--accent);
+    padding: 4px 12px; border-radius: 999px; margin-bottom: 20px;
+  }
+  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.1; letter-spacing: -0.02em; }
+  .hero p.lead { font-size: 1.2rem; color: var(--muted); margin-top: 16px; max-width: 600px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .btn {
+    display: inline-block; padding: 11px 22px; border-radius: 8px;
+    font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border);
+    color: var(--text); background: var(--surface);
+  }
+  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .btn:hover { text-decoration: none; opacity: 0.9; }
+
+  /* Sekcie */
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  section h2 { font-size: 1.6rem; margin-bottom: 24px; letter-spacing: -0.01em; }
+  section p { color: var(--muted); max-width: 680px; }
+  section p + p { margin-top: 12px; }
+
+  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .skills span {
+    padding: 6px 14px; border-radius: 999px; font-size: 0.9rem;
+    background: var(--surface); border: 1px solid var(--border);
+  }
+  .skill-group + .skill-group { margin-top: 20px; }
+  .skill-group h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 12px; padding: 22px; display: flex; flex-direction: column;
+  }
+  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
+  .card p { font-size: 0.95rem; flex: 1; }
+  .card .tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
+  .card .tech span { font-size: 0.78rem; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
+  .card .links { display: flex; gap: 16px; font-size: 0.9rem; font-weight: 500; }
+
+  .timeline { list-style: none; }
+  .timeline li { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0; }
+  .timeline li + li { border-top: 1px dashed var(--border); }
+  .timeline .when { color: var(--muted); font-size: 0.9rem; }
+  .timeline h3 { font-size: 1rem; }
+  .timeline p { font-size: 0.95rem; }
+  @media (max-width: 600px) { .timeline li { grid-template-columns: 1fr; gap: 4px; } }
+
+  .contact-list { list-style: none; display: grid; gap: 10px; margin-top: 8px; }
+  .contact-list li { display: flex; gap: 12px; }
+  .contact-list .k { color: var(--muted); min-width: 90px; }
+
+  footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="logo">Samuel Bechera</a>
+    <ul>
+      <li><a href="#o-mne">O mne</a></li>
+      <li><a href="#zrucnosti">Zručnosti</a></li>
+      <li><a href="#projekty">Projekty</a></li>
+      <li><a href="#skusenosti">Skúsenosti</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Hľadám brigádu / prácu v IT</span>
+    <h1>Ahoj, som Samuel Bechera.</h1>
+    <p class="lead">Študent informatiky na TU v Košiciach. Mám základy z webu, programovania, databáz aj sietí a hľadám prvú príležitosť v IT, kde sa môžem učiť a rásť. Najviac ma lákajú AI nástroje, web a kyberbezpečnosť.</p>
+    <div class="btns">
+      <a href="#kontakt" class="btn primary">Kontaktuj ma</a>
+      <a href="#projekty" class="btn">Pozrieť projekty</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="o-mne">
+    <div class="wrap">
+      <h2>O mne</h2>
+      <p>Mám ukončené bakalárske štúdium informatiky na Technickej univerzite v Košiciach a teraz som v 1. ročníku inžinierskeho štúdia. Počas štúdia som programoval, robil webové aplikácie, pracoval s relačnými databázami v SQL a v tíme som robil projekt podľa agilného prístupu.</p>
+      <p>Som skôr kreatívny typ, baví ma vymýšľať riešenia a dôležité mi je, aby aplikácie boli pre ľudí jednoduché a príjemné na používanie. Na projekty aj na učenie bežne používam AI asistentov a chcem sa v tom ďalej zlepšovať. Som otvorený rôznym pozíciám, napríklad vo vývoji webu, testovaní, práci s AI alebo v IT bezpečnosti. Rýchlo sa učím a nové nástroje ma bavia.</p>
+    </div>
+  </section>
+
+  <section id="zrucnosti">
+    <div class="wrap">
+      <h2>Zručnosti</h2>
+      <div class="skill-group">
+        <h3>Web a dizajn</h3>
+        <div class="skills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Figma</span><span>UX / používateľské rozhrania</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Programovanie a databázy</h3>
+        <div class="skills"><span>Python</span><span>Java</span><span>C</span><span>SQL</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>AI a nástroje</h3>
+        <div class="skills"><span>AI asistenti (ChatGPT, Claude…)</span><span>Git / GitLab</span><span>Jira</span><span>Agilný vývoj</span><span>Manuálne testovanie</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Siete a bezpečnosť</h3>
+        <div class="skills"><span>Cisco CCNA: Introduction to Networks</span><span>IP adresovanie</span><span>Routing a switching</span><span>Základy sieťovej bezpečnosti</span></div>
+      </div>
+      <div class="skill-group">
+        <h3>Jazyky</h3>
+        <div class="skills"><span>Slovenčina – materinský jazyk</span><span>Angličtina – C1</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projekty">
+    <div class="wrap">
+      <h2>Projekty</h2>
+      <div class="projects">
+        <article class="card">
+          <h3>Odšumovanie obrazu</h3>
+          <p>Bakalárska práca. Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
+          <div class="tech"><span>Python</span><span>Spracovanie obrazu</span></div>
+        </article>
+        <article class="card">
+          <h3>Webová aplikácia na odšumovanie obrázkov</h3>
+          <p>Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
+          <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
+        </article>
+        <article class="card">
+          <h3>Tímový softvérový projekt</h3>
+          <p>Projekt na predmet Softvérové inžinierstvo. V tíme sme vyvíjali aplikáciu podľa agilného prístupu.</p>
+          <div class="tech"><span>Agile</span><span>Git / GitLab</span><span>Jira</span></div>
+        </article>
+        <article class="card">
+          <h3>Táto stránka</h3>
+          <p>Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Sedí na mobile aj na počítači a má svetlý aj tmavý režim.</p>
+          <div class="tech"><span>HTML</span><span>CSS</span><span>AI</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="skusenosti">
+    <div class="wrap">
+      <h2>Vzdelanie</h2>
+      <ul class="timeline">
+        <li>
+          <div class="when">2026 – teraz</div>
+          <div><h3>Ing. · Informatika · Technická univerzita v Košiciach</h3><p>1. ročník inžinierskeho štúdia.</p></div>
+        </li>
+        <li>
+          <div class="when">2023 – 2026</div>
+          <div><h3>Bc. · Informatika · Technická univerzita v Košiciach</h3><p>Bakalárska práca: Metódy odstránenia šumu a vylepšovania obrazu. Predmety: Databázové systémy, Softvérové inžinierstvo, Webové technológie, Používateľské rozhrania (UX), Programovanie.</p></div>
+        </li>
+        <li>
+          <div class="when">2018 – 2023</div>
+          <div><h3>Cirkevné bilingválne gymnázium, Stará Ľubovňa</h3><p>Maturitná skúška.</p></div>
+        </li>
+      </ul>
+
+      <h2 style="margin-top:48px">Certifikáty</h2>
+      <ul class="timeline">
+        <li>
+          <div class="when">Máj 2025</div>
+          <div><h3>CCNA: Introduction to Networks · Cisco Networking Academy</h3><p>Základy počítačových sietí, IP adresovanie, routing, switching a základy sieťovej bezpečnosti. <a href="https://www.credly.com/badges/67101643-5fda-4e66-982a-5cca48e8103c" target="_blank" rel="noopener">Overiť certifikát →</a></p></div>
+        </li>
+        <li>
+          <div class="when">Apríl 2023</div>
+          <div><h3>Youthpass · Erasmus+</h3><p>Medzinárodný projekt o komunikácii, tímovej práci a medzikultúrnom porozumení.</p></div>
+        </li>
+      </ul>
+
+      <h2 style="margin-top:48px">Pracovné skúsenosti</h2>
+      <ul class="timeline">
+        <li>
+          <div class="when">Leto 2025, 2026</div>
+          <div><h3>Pracovník kúpaliska · sezónna práca</h3><p>Predaj vstupeniek a občerstvenia, obsluha zákazníkov a vedenie pokladne.</p></div>
+        </li>
+        <li>
+          <div class="when">2023 – 2025</div>
+          <div><h3>Pomocný pracovník pri sťahovaní · príležitostne</h3><p>Spoľahlivosť a tímová spolupráca pri fyzicky náročnej práci.</p></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="kontakt">
+    <div class="wrap">
+      <h2>Kontakt</h2>
+      <p>Hľadáte niekoho do tímu alebo na brigádu? Pokojne mi napíšte.</p>
+      <ul class="contact-list">
+        <li><span class="k">E-mail</span><a href="mailto:samuelbechera@gmail.com">samuelbechera@gmail.com</a></li>
+        <li><span class="k">Mesto</span><span>Košice, Slovensko</span></li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Samuel Bechera</div>
+</footer>
+
+</body>
+</html>
