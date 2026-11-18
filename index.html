@@ -1010,8 +1010,8 @@
       window.removeEventListener('blur', onBlur);
       document.removeEventListener('visibilitychange', onBlur);
       if (!left && document.hasFocus()) {
-        copyMail(function () { showToast(META[currentLang].nomail, 5000); },
-                 function () { showToast(META[currentLang].nomail2, 6000); });
+        showToast(META[currentLang].nomail2, 6000);
+        copyMail(function () { showToast(META[currentLang].nomail, 6000); }, function () {});
       }
     }, 1200);
   });
