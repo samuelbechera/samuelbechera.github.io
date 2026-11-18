@@ -279,6 +279,11 @@
 
   .card p.mine { margin-top: 12px; flex: 0; font-size: .9rem; }
   .card p.mine strong { color: var(--text); font-weight: 600; }
+  .card .mine-wrap { margin-top: 14px; font-size: .9rem; color: var(--muted); }
+  .card .mine-wrap strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 6px; }
+  .card ul.mine { list-style: none; display: grid; gap: 5px; }
+  .card ul.mine li { position: relative; padding-left: 16px; line-height: 1.5; }
+  .card ul.mine li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
 
   /* Časová os */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
@@ -506,7 +511,18 @@
           <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="po.badge">Tímový projekt · IBM</span></div>
           <h3>Občan.AI</h3>
           <p data-i18n="po.d">Tímový projekt FEI TUKE v spolupráci s IBM Slovensko, na ktorom pracujem ako člen vývojového tímu. AI asistent, ktorý odpovedá na otázky o vybavovaní na mestskom úrade (parkovacia karta, daň za psa…) z oficiálnych dokumentov, pri každej odpovedi uvedie zdroj a vie predvyplniť formulár.</p>
-          <div class="tech"><span>Python</span><span>FastAPI</span><span>Flutter</span><span>PostgreSQL</span><span>AI</span></div>
+          <div class="mine-wrap">
+            <strong data-i18n="po.mt">Na čom som pracoval:</strong>
+            <ul class="mine">
+              <li data-i18n="po.m1">prihlasovanie cez Firebase Authentication na webe aj v Android aplikácii a jeho prepojenie so serverom</li>
+              <li data-i18n="po.m2">používateľské účty – registrácia, prihlásenie, JWT tokeny a ochrana proti zneužitiu</li>
+              <li data-i18n="po.m3">ukladanie histórie konverzácií s AI asistentom</li>
+              <li data-i18n="po.m4">databázové tabuľky a migrácie v PostgreSQL</li>
+              <li data-i18n="po.m5">prihlasovacie a registračné obrazovky vo Flutteri</li>
+              <li data-i18n="po.m6">automatické testy a technická dokumentácia</li>
+            </ul>
+          </div>
+          <div class="tech"><span>Python</span><span>FastAPI</span><span>Flutter</span><span>Firebase</span><span>PostgreSQL</span><span>AI</span></div>
         </article>
         <article class="card reveal">
           <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="pc.badge">Webová hra</span></div>
@@ -678,6 +694,13 @@
     'pg.play': 'Play on itch.io',
     'po.badge': 'Team project · IBM',
     'po.d': 'A FEI TUKE team project in cooperation with IBM Slovakia, which I work on as a member of the development team. An AI assistant that answers questions about dealing with the city office (parking card, dog tax…) based on official documents, cites the source of every answer and can prefill the required form.',
+    'po.mt': 'What I worked on:',
+    'po.m1': 'sign-in with Firebase Authentication on the web and in the Android app, connected to the backend',
+    'po.m2': 'user accounts – registration, login, JWT tokens and abuse protection',
+    'po.m3': 'storing chat history with the AI assistant',
+    'po.m4': 'database tables and migrations in PostgreSQL',
+    'po.m5': 'sign-in and registration screens in Flutter',
+    'po.m6': 'automated tests and technical documentation',
     'pc.badge': 'Web game',
     'pc.d': 'Sudoku where you fill in colours instead of numbers. The game has a console and a web version, user login, a high-score leaderboard, ratings and comments via a REST API, and database storage. I built it on my own for the Component Programming course.',
     'pk.badge': 'Unity game', 'pk.t': '3D parkour game',
