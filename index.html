@@ -261,6 +261,13 @@
   .note svg { width: 15px; height: 15px; }
   .card .tech.wide { margin-top: 24px; }
 
+  .thumb { display: block; margin: -26px -26px 22px; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 15px 15px 0 0; border-bottom: 1px solid var(--border); background: var(--surface-2); }
+  .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .card:hover .thumb img { transform: scale(1.04); }
+  .card .links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: .9rem; font-weight: 600; }
+  .card .links a { display: inline-flex; align-items: center; gap: 4px; }
+  .card .links svg { width: 15px; height: 15px; }
+
   /* Časová os */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 40px; } }
@@ -472,25 +479,33 @@
           <div class="tech wide"><span>React</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>OpenAI API</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">02</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
+          <a class="thumb" href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/just-one-more-reel.webp" alt="" width="960" height="640" loading="lazy"></a>
+          <div class="top-row"><span class="num">02</span><span class="badge">Game Jam Košice 2026</span></div>
+          <h3>Just One More Reel</h3>
+          <p data-i18n="pg.d">Krátka 3D hra o prokrastinácii. Namiesto učenia scroluješ na mobile a musíš nazbierať 50 „Doom Points“ tak, aby ťa nenachytala mama. Hru narúšajú udalosti ako výpadok Wi-Fi či otvorené okno. Vytvorili sme ju v tíme RunTime Rebels počas game jamu a je zverejnená na itch.io.</p>
+          <div class="links"><a href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener"><span data-i18n="pg.play">Hrať na itch.io</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
+          <div class="tech"><span>Unity</span><span>C#</span><span data-i18n="pg.team">Tímový projekt</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
           <h3 data-i18n="p1.t">Odšumovanie obrazu</h3>
           <p data-i18n="p1.d">Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
           <div class="tech"><span>Python</span><span data-i18n="p1.tech">Spracovanie obrazu</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
+          <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
           <h3 data-i18n="p2.t">Webová aplikácia na odšumovanie obrázkov</h3>
           <p data-i18n="p2.d">Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
           <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="p3.badge">Tímový projekt</span></div>
+          <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="p3.badge">Tímový projekt</span></div>
           <h3 data-i18n="p3.t">Tímový softvérový projekt</h3>
           <p data-i18n="p3.d">Projekt na predmet Softvérové inžinierstvo. V tíme sme vyvíjali aplikáciu podľa agilného prístupu.</p>
           <div class="tech"><span>Agile</span><span>Git / GitLab</span><span>Jira</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
+          <div class="top-row"><span class="num">06</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
           <h3 data-i18n="p4.t">Táto stránka</h3>
           <p data-i18n="p4.d">Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Je v slovenčine aj angličtine, funguje na mobile aj na počítači a má svetlý aj tmavý režim.</p>
           <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>AI</span></div>
@@ -622,6 +637,8 @@
     'p0.h2': '<strong>Security:</strong> OWASP-recommended password hashing, brute-force protection, server-side permission checks and security headers.',
     'p0.h3': '<strong>Testing:</strong> over 600 automated tests plus browser tests on desktop and mobile.',
     'p0.h4': '<strong>Deployed</strong> with Docker to a university server.',
+    'pg.d': 'A short 3D game about procrastination. Instead of studying, you keep scrolling on your phone and need to collect 50 “Doom Points” without getting caught by your mom. Events like a Wi-Fi outage or an open window interrupt you. We built it as the RunTime Rebels team during a game jam, and it’s published on itch.io.',
+    'pg.play': 'Play on itch.io', 'pg.team': 'Team project',
     'p1.badge': 'Bachelor’s thesis', 'p1.t': 'Image denoising',
     'p1.d': 'I researched different types of noise in digital images and methods for removing them. I implemented the methods in Python and compared them to find the most suitable one for each type of noise.',
     'p1.tech': 'Image processing',
