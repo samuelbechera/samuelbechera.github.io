@@ -277,6 +277,9 @@
   .card .links a { display: inline-flex; align-items: center; gap: 4px; }
   .card .links svg { width: 15px; height: 15px; }
 
+  .card p.mine { margin-top: 12px; flex: 0; font-size: .9rem; }
+  .card p.mine strong { color: var(--text); font-weight: 600; }
+
   /* Časová os */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 40px; } }
@@ -438,11 +441,11 @@
       <div class="skill-grid">
         <div class="skill-card reveal">
           <h3><svg class="i"><use href="#i-layout"/></svg><span data-i18n="sk.web">Web a dizajn</span></h3>
-          <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Figma</span><span data-i18n="sk.ux">UX / používateľské rozhrania</span></div>
+          <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>TypeScript</span><span>React</span><span>Flutter</span><span>Figma</span><span data-i18n="sk.ux">UX / používateľské rozhrania</span></div>
         </div>
         <div class="skill-card reveal">
           <h3><svg class="i"><use href="#i-code"/></svg><span data-i18n="sk.prog">Programovanie a databázy</span></h3>
-          <div class="chips"><span>Python</span><span>FastAPI</span><span>Java</span><span>C</span><span>SQL</span><span>PostgreSQL</span><span>Docker</span></div>
+          <div class="chips"><span>Python</span><span>FastAPI</span><span>Java</span><span>Spring Boot</span><span>C</span><span>SQL</span><span>PostgreSQL</span><span>Docker</span></div>
         </div>
         <div class="skill-card reveal">
           <h3><svg class="i"><use href="#i-spark"/></svg><span data-i18n="sk.ai">AI a nástroje</span></h3>
@@ -498,25 +501,38 @@
           </div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
+          <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="po.badge">Tímový projekt · IBM</span></div>
+          <h3>Občan.AI</h3>
+          <p data-i18n="po.d">Tímový projekt FEI TUKE v spolupráci s IBM Slovensko. AI asistent, ktorý odpovedá na otázky o vybavovaní na mestskom úrade (parkovacia karta, daň za psa…) z oficiálnych dokumentov, pri každej odpovedi uvedie zdroj a vie predvyplniť formulár.</p>
+          <p class="mine" data-i18n="po.mine"><strong>Moja časť:</strong> používateľské účty – registrácia a prihlásenie (Argon2, JWT), ukladanie histórie konverzácií a prihlasovacie obrazovky v aplikácii vrátane testov.</p>
+          <div class="tech"><span>Python</span><span>FastAPI</span><span>Flutter</span><span>PostgreSQL</span><span>AI</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="pc.badge">Webová hra</span></div>
+          <h3>ColorSudoku</h3>
+          <p data-i18n="pc.d">Sudoku, v ktorom sa namiesto čísel dopĺňajú farby. Hra má konzolovú aj webovú verziu, prihlasovanie používateľov, rebríček najlepších skóre, hodnotenia a komentáre cez REST API a ukladanie do databázy. Vytvoril som ju sám na predmet Komponentové programovanie.</p>
+          <div class="tech"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>JPA</span><span>PostgreSQL</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="pr.badge">Výskum</span></div>
+          <h3 data-i18n="pr.t">Životný cyklus issues na GitHube</h3>
+          <p data-i18n="pr.d">Vedecký článok vo formáte IEEE o tom, aké zložité sú životné cykly hlásení chýb a požiadaviek (issues) v open-source projektoch. Cez GitHub API som zozbieral a v Pythone analyzoval 681 issues a 4 257 udalostí zo siedmich repozitárov.</p>
+          <div class="tech"><span>Python</span><span>GitHub API</span><span data-i18n="pr.tech">Analýza dát</span><span>LaTeX</span></div>
+        </article>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">06</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
           <h3 data-i18n="p1.t">Odšumovanie obrazu</h3>
           <p data-i18n="p1.d">Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
           <div class="tech"><span>Python</span><span data-i18n="p1.tech">Spracovanie obrazu</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
+          <div class="top-row"><span class="num">07</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
           <h3 data-i18n="p2.t">Webová aplikácia na odšumovanie obrázkov</h3>
           <p data-i18n="p2.d">Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
           <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
         </article>
         <article class="card reveal">
-          <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="p3.badge">Tímový projekt</span></div>
-          <h3 data-i18n="p3.t">Tímový softvérový projekt</h3>
-          <p data-i18n="p3.d">Projekt na predmet Softvérové inžinierstvo. V tíme sme vyvíjali aplikáciu podľa agilného prístupu.</p>
-          <div class="tech"><span>Agile</span><span>Git / GitLab</span><span>Jira</span></div>
-        </article>
-        <article class="card reveal">
-          <div class="top-row"><span class="num">06</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
+          <div class="top-row"><span class="num">08</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
           <h3 data-i18n="p4.t">Táto stránka</h3>
           <p data-i18n="p4.d">Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Je v slovenčine aj angličtine, funguje na mobile aj na počítači a má svetlý aj tmavý režim.</p>
           <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>AI</span></div>
@@ -650,13 +666,19 @@
     'p0.h4': '<strong>Deployed</strong> with Docker to a university server.',
     'pg.d': 'A short 3D game about procrastination. Instead of studying, you keep scrolling on your phone and need to collect 50 “Doom Points” without getting caught by your mom. Events like a Wi-Fi outage or an open window interrupt you. It was made at a game jam under the RunTime Rebels team name, but I programmed and built most of the game myself. It’s published on itch.io.',
     'pg.play': 'Play on itch.io',
+    'po.badge': 'Team project · IBM',
+    'po.d': 'A FEI TUKE team project in cooperation with IBM Slovakia. An AI assistant that answers questions about dealing with the city office (parking card, dog tax…) based on official documents, cites the source of every answer and can prefill the required form.',
+    'po.mine': '<strong>My part:</strong> user accounts – registration and login (Argon2, JWT), storing chat history, and the sign-in screens in the app including tests.',
+    'pc.badge': 'Web game',
+    'pc.d': 'Sudoku where you fill in colours instead of numbers. The game has a console and a web version, user login, a high-score leaderboard, ratings and comments via a REST API, and database storage. I built it on my own for the Component Programming course.',
+    'pr.badge': 'Research', 'pr.t': 'Issue lifecycles on GitHub',
+    'pr.d': 'An IEEE-style research paper on how complex the lifecycles of bug reports and feature requests (issues) are in open-source projects. Using the GitHub API, I collected and analysed in Python 681 issues and 4,257 events from seven repositories.',
+    'pr.tech': 'Data analysis',
     'p1.badge': 'Bachelor’s thesis', 'p1.t': 'Image denoising',
     'p1.d': 'I researched different types of noise in digital images and methods for removing them. I implemented the methods in Python and compared them to find the most suitable one for each type of noise.',
     'p1.tech': 'Image processing',
     'p2.badge': 'University project', 'p2.t': 'Image denoising web app',
     'p2.d': 'A project for the User Interfaces course. I designed and built a web interface for denoising images, focused on simple controls and a good user experience.',
-    'p3.badge': 'Team project', 'p3.t': 'Team software project',
-    'p3.d': 'A project for the Software Engineering course. As a team, we developed an application using an agile approach.',
     'p4.badge': 'Personal project', 'p4.t': 'This website',
     'p4.d': 'My personal portfolio, built with the help of an AI assistant. It’s available in Slovak and English, works on both mobile and desktop, and has light and dark themes.',
     'exp.eyebrow': 'Experience', 'exp.title': 'Education & experience',
