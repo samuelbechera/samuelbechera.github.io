@@ -755,11 +755,11 @@
         <h2 data-i18n="ct.title">Poďme spolupracovať</h2>
         <p data-i18n="ct.text">Hľadáte niekoho do tímu alebo na brigádu? Pokojne mi napíšte, rád sa ozvem.</p>
         <div class="btns">
-          <a class="btn primary" href="mailto:samuelbechera@gmail.com"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="ct.mail">Napísať e-mail</span></a>
+          <a class="btn primary" id="mail-btn" href="mailto:samuelbechera@gmail.com"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="ct.mail">Napísať e-mail</span></a>
           <a class="btn" href="https://www.linkedin.com/in/samuelbechera" target="_blank" rel="noopener"><svg class="i"><use href="#i-in"/></svg><span>LinkedIn</span></a>
           <button type="button" class="btn" id="copy-btn"><svg class="i"><use href="#i-copy"/></svg><span data-i18n="ct.copy">Kopírovať e-mail</span></button>
         </div>
-        <p class="mail">samuelbechera@gmail.com · <span data-i18n="fact.loc">Košice, Slovensko</span></p>
+        <p class="mail">samuelbechera@gmail.com · <a href="https://mail.google.com/mail/?view=cm&amp;to=samuelbechera@gmail.com" target="_blank" rel="noopener" data-i18n="ct.gmail">Otvoriť v Gmaile</a></p>
       </div>
     </div>
   </section>
@@ -871,14 +871,14 @@
     'w2.t': 'Moving helper · occasional work', 'w2.d': 'Physically demanding work where reliability and teamwork mattered.',
     'ct.eyebrow': 'Contact', 'ct.title': 'Let’s work together',
     'ct.text': 'Looking for someone to join your team, or for a part-time role? Feel free to send me a message – I’ll be happy to get back to you.',
-    'ct.mail': 'Send an email', 'ct.copy': 'Copy email',
+    'ct.mail': 'Send an email', 'ct.copy': 'Copy email', 'ct.gmail': 'Open in Gmail',
     'ft.made': 'Built with the help of AI'
   };
   var META = {
     sk: { title: 'Samuel Bechera – Portfólio', desc: 'Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.',
-          copied: 'E-mail skopírovaný', theme: 'Prepnúť svetlý / tmavý režim' },
+          copied: 'E-mail skopírovaný', nomail: 'E-mailová aplikácia sa neotvorila – adresu som skopíroval do schránky.', theme: 'Prepnúť svetlý / tmavý režim' },
     en: { title: 'Samuel Bechera – Portfolio', desc: 'Samuel Bechera – Computer Science student from Košice, Slovakia. Web, AI, programming and cybersecurity.',
-          copied: 'Email copied', theme: 'Toggle light / dark mode' }
+          copied: 'Email copied', nomail: 'No email app opened – the address has been copied to your clipboard.', theme: 'Toggle light / dark mode' }
   };
 
   function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
@@ -989,10 +989,31 @@
 
   /* ---------- Kopírovanie e-mailu ---------- */
   var toast = document.getElementById('toast'), toastTimer;
-  function showToast(msg) {
+  function showToast(msg, ms) {
     toast.textContent = msg; toast.classList.add('show');
-    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2000);
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove('show'); }, ms || 2000);
   }
+  function copyMail(cb) {
+    var mail = 'samuelbechera@gmail.com';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail).then(cb, function () {});
+    }
+  }
+  /* Ak sa po kliknutí na „Napísať e-mail“ neotvorí žiadna e-mailová aplikácia
+     (okno nestratí fokus), adresu skopírujeme a dáme o tom vedieť. */
+  document.getElementById('mail-btn').addEventListener('click', function () {
+    var left = false;
+    function onBlur() { left = true; }
+    window.addEventListener('blur', onBlur);
+    document.addEventListener('visibilitychange', onBlur);
+    setTimeout(function () {
+      window.removeEventListener('blur', onBlur);
+      document.removeEventListener('visibilitychange', onBlur);
+      if (!left && document.hasFocus()) {
+        copyMail(function () { showToast(META[currentLang].nomail, 5000); });
+      }
+    }, 1200);
+  });
   document.getElementById('copy-btn').addEventListener('click', function () {
     var mail = 'samuelbechera@gmail.com';
     if (navigator.clipboard && navigator.clipboard.writeText) {
