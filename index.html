@@ -5,6 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Samuel Bechera – Portfólio</title>
 <meta name="description" content="Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://samuelbechera.github.io/">
+<meta property="og:title" content="Samuel Bechera – Portfólio">
+<meta property="og:description" content="Študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.">
+<meta property="og:image" content="https://samuelbechera.github.io/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%239333ea'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3ESB%3C/text%3E%3C/svg%3E">
@@ -124,7 +132,13 @@
   .nav-links { display: flex; gap: 4px; list-style: none; }
   .nav-links a { color: var(--muted); font-size: .92rem; font-weight: 500; padding: 6px 12px; border-radius: 8px; transition: color .15s, background .15s; }
   .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
-  @media (max-width: 860px) { .nav-links { display: none; } }
+  @media (max-width: 860px) {
+    nav.top .wrap { flex-wrap: wrap; height: auto; padding-top: 12px; row-gap: 6px; }
+    .nav-links { order: 3; width: 100%; overflow-x: auto; scrollbar-width: none; padding-bottom: 8px; margin: 0 -4px; }
+    .nav-links::-webkit-scrollbar { display: none; }
+    .nav-links a { white-space: nowrap; font-size: .88rem; padding: 6px 10px; }
+    html { scroll-padding-top: 116px; }
+  }
 
   .controls { display: flex; align-items: center; gap: 8px; }
   .seg {
@@ -288,6 +302,31 @@
   .card ul.mine li { position: relative; padding-left: 16px; line-height: 1.5; }
   .card ul.mine li::before { content: ""; position: absolute; left: 2px; top: .6em; width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--accent-2)); }
 
+  /* Záľuby */
+  .hobbies { margin-top: 28px; }
+  .hobbies h3 { font-size: 1rem; margin-bottom: 12px; }
+  .hobby-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
+  .hobby { display: flex; gap: 12px; align-items: center; padding: 12px 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border); }
+  .hobby .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); flex-shrink: 0; }
+  .hobby strong { display: block; font-size: .95rem; font-weight: 600; color: var(--text); }
+  .hobby span:not(.ic) { font-size: .87rem; color: var(--muted); }
+
+  /* Filter projektov */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin: -12px 0 28px; }
+  .filters button {
+    display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+    font: 500 .9rem/1 "Inter", sans-serif; padding: 9px 14px; border-radius: 999px;
+    background: var(--surface); color: var(--muted); border: 1px solid var(--border); transition: all .15s;
+  }
+  .filters button:hover { color: var(--text); border-color: var(--faint); }
+  .filters button i { font-style: normal; font-size: .75rem; font-weight: 600; color: var(--faint); }
+  .filters button[aria-pressed="true"] { background: var(--text); color: var(--bg); border-color: var(--text); }
+  .filters button[aria-pressed="true"] i { color: var(--bg); opacity: .65; }
+  .projects .card[hidden] { display: none; }
+  .projects .card.pop { animation: pop .35s ease; }
+  @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+  .empty { margin-top: 8px; }
+
   /* Časová os */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 40px; } }
@@ -331,6 +370,7 @@
   .js .reveal.in { opacity: 1; transform: none; }
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    .projects .card.pop { animation: none; }
     .js .reveal { opacity: 1; transform: none; transition: none; }
     .dot::after { animation: none; }
     .card, .btn { transition: none; }
@@ -371,6 +411,8 @@
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
   <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></symbol>
   <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+  <symbol id="i-gym" viewBox="0 0 24 24"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"/></symbol>
+  <symbol id="i-fish" viewBox="0 0 24 24"><path d="M3 12c3-4.5 7-6 11-6 3 0 5.5 2 7 6-1.5 4-4 6-7 6-4 0-8-1.5-11-6z"/><path d="M3 12l-1-3M3 12l-1 3"/><circle cx="16.5" cy="10.5" r=".8" fill="currentColor"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
 </svg>
 
@@ -404,9 +446,9 @@
     <div>
       <span class="status"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.status">Hľadám brigádu alebo prácu v IT</span></span>
       <h1><span class="hi" data-i18n="hero.hi">Ahoj, volám sa</span><span class="grad">Samuel Bechera</span></h1>
-      <p class="lead" data-i18n="hero.lead">Študent informatiky na TU v Košiciach. Mám základy z webu, programovania, databáz aj sietí a hľadám prvú príležitosť v IT, kde sa môžem učiť a rásť. Najviac ma lákajú AI nástroje, web a kyberbezpečnosť.</p>
+      <p class="lead" data-i18n="hero.lead">Som študent informatiky na Technickej univerzite v Košiciach. Mám základy z webu, programovania, databáz aj sietí a hľadám prvú príležitosť v IT, kde sa budem môcť učiť a rásť. Najviac ma lákajú AI nástroje, web a kyberbezpečnosť.</p>
       <div class="btns">
-        <a href="#kontakt" class="btn primary"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="hero.cta1">Kontaktuj ma</span></a>
+        <a href="#kontakt" class="btn primary"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="hero.cta1">Napíšte mi</span></a>
         <a href="#projekty" class="btn"><svg class="i"><use href="#i-down"/></svg><span data-i18n="hero.cta2">Pozrieť projekty</span></a>
       </div>
       <ul class="facts">
@@ -427,11 +469,18 @@
       <h2 class="reveal" data-i18n="about.title">Kto som a čo ma baví</h2>
       <div class="about">
         <div class="reveal">
-          <p data-i18n="about.p1">Mám ukončené bakalárske štúdium informatiky na Technickej univerzite v Košiciach a teraz som v 1. ročníku inžinierskeho štúdia. Počas štúdia som programoval, robil webové aplikácie, pracoval s relačnými databázami v SQL a v tíme som robil projekt podľa agilného prístupu.</p>
-          <p data-i18n="about.p2">Som skôr kreatívny typ, baví ma vymýšľať riešenia a dôležité mi je, aby aplikácie boli pre ľudí jednoduché a príjemné na používanie. Na projekty aj na učenie bežne používam AI asistentov a chcem sa v tom ďalej zlepšovať. Rýchlo sa učím a nové nástroje ma bavia.</p>
+          <p data-i18n="about.p1">Mám ukončené bakalárske štúdium informatiky na Technickej univerzite v Košiciach a teraz pokračujem v 1. ročníku inžinierskeho štúdia. Počas štúdia som programoval v Pythone, Jave aj C, vytváral webové aplikácie, pracoval s relačnými databázami a v tíme som vyvíjal softvér podľa agilných postupov.</p>
+          <p data-i18n="about.p2">Som skôr kreatívny typ – baví ma vymýšľať riešenia a záleží mi na tom, aby boli aplikácie pre ľudí jednoduché a príjemné na používanie. Pri projektoch aj pri učení bežne používam AI asistentov a chcem sa v tom ďalej zlepšovať. Rýchlo sa učím a nové nástroje ma bavia.</p>
+          <div class="hobbies">
+            <h3 data-i18n="hob.t">Mimo počítača</h3>
+            <div class="hobby-list">
+              <div class="hobby"><span class="ic"><svg class="i"><use href="#i-gym"/></svg></span><div><strong data-i18n="hob.gym">Cvičenie</strong><span data-i18n="hob.gym.d">Pravidelne chodím cvičiť.</span></div></div>
+              <div class="hobby"><span class="ic"><svg class="i"><use href="#i-fish"/></svg></span><div><strong data-i18n="hob.fish">Rybárčenie</strong><span data-i18n="hob.fish.d">Zvykol som chodiť na ryby.</span></div></div>
+            </div>
+          </div>
         </div>
         <aside class="panel reveal">
-          <h3 data-i18n="about.open">Som otvorený pozíciám v oblastiach</h3>
+          <h3 data-i18n="about.open">Zaujímajú ma pozície v oblastiach</h3>
           <ul class="interests">
             <li><span class="ic"><svg class="i"><use href="#i-spark"/></svg></span><div><strong data-i18n="int.ai">AI a automatizácia</strong><span data-i18n="int.ai.d">Práca s AI nástrojmi a ich využitie v praxi</span></div></li>
             <li><span class="ic"><svg class="i"><use href="#i-layout"/></svg></span><div><strong data-i18n="int.web">Web a UX</strong><span data-i18n="int.web.d">Tvorba webov, ktoré sa dobre používajú</span></div></li>
@@ -482,8 +531,15 @@
     <div class="wrap">
       <span class="eyebrow reveal" data-i18n="proj.eyebrow">Projekty</span>
       <h2 class="reveal" data-i18n="proj.title">Na čom som pracoval</h2>
+      <div class="filters reveal" role="group" aria-label="Filter">
+        <button type="button" data-f="all" aria-pressed="true"><span data-i18n="f.all">Všetko</span><i></i></button>
+        <button type="button" data-f="web" aria-pressed="false"><span>Web</span><i></i></button>
+        <button type="button" data-f="ai" aria-pressed="false"><span>AI</span><i></i></button>
+        <button type="button" data-f="game" aria-pressed="false"><span data-i18n="f.game">Hry</span><i></i></button>
+        <button type="button" data-f="research" aria-pressed="false"><span data-i18n="f.research">Výskum</span><i></i></button>
+      </div>
       <div class="projects">
-        <article class="card featured reveal">
+        <article class="card featured reveal" data-tags="web ai">
           <div class="top-row"><span class="num">01</span><span class="badge" data-i18n="p0.badge">Hlavný projekt</span></div>
           <div class="feat-grid">
             <div>
@@ -500,17 +556,17 @@
           </div>
           <div class="tech wide"><span>React</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>OpenAI API</span></div>
         </article>
-        <article class="card media reveal">
+        <article class="card media reveal" data-tags="game">
           <a class="thumb" href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/just-one-more-reel.webp" alt="" width="960" height="640" loading="lazy"></a>
           <div class="body">
           <div class="top-row"><span class="num">02</span><span class="badge">Game Jam Košice 2026</span></div>
           <h3>Just One More Reel</h3>
-          <p data-i18n="pg.d">Krátka 3D hra o prokrastinácii. Namiesto učenia scroluješ na mobile a musíš nazbierať 50 „Doom Points“ tak, aby ťa nenachytala mama. Hru narúšajú udalosti ako výpadok Wi-Fi či otvorené okno. Vznikla na game jame pod tímom RunTime Rebels, väčšinu hry som však naprogramoval a postavil sám. Je zverejnená na itch.io.</p>
+          <p data-i18n="pg.d">Krátka 3D hra o prokrastinácii. Hráč namiesto učenia skroluje na mobile a musí nazbierať 50 „Doom Points“ tak, aby ho nenachytala mama. Hru narúšajú udalosti ako výpadok Wi-Fi či otvorené okno. Vznikla na game jame pod názvom tímu RunTime Rebels, väčšinu hry som však naprogramoval a postavil sám. Hra je zverejnená na itch.io.</p>
           <div class="links"><a href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener"><span data-i18n="pg.play">Hrať na itch.io</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Unity</span><span>C#</span><span>Game jam</span></div>
           </div>
         </article>
-        <article class="card wide reveal">
+        <article class="card wide reveal" data-tags="ai web">
           <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="po.badge">Tímový projekt · IBM</span></div>
           <div class="feat-grid">
           <div>
@@ -531,46 +587,47 @@
           </div>
           <div class="tech"><span>Python</span><span>FastAPI</span><span>Flutter</span><span>Firebase</span><span>PostgreSQL</span><span>AI</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="web game">
           <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="pc.badge">Webová hra</span></div>
           <h3>ColorSudoku</h3>
           <p data-i18n="pc.d">Sudoku, v ktorom sa namiesto čísel dopĺňajú farby. Hra má konzolovú aj webovú verziu, prihlasovanie používateľov, rebríček najlepších skóre, hodnotenia a komentáre cez REST API a ukladanie do databázy. Vytvoril som ju sám na predmet Komponentové programovanie.</p>
           <div class="links"><a href="https://www.youtube.com/watch?v=1Fp6KZ0c6v4" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg><span data-i18n="vid">Pozrieť video</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>JPA</span><span>PostgreSQL</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="game">
           <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="pk.badge">Hra v Unity</span></div>
           <h3 data-i18n="pk.t">3D parkour hra</h3>
           <p data-i18n="pk.d">3D plošinovka s dvoma levelmi. Hráč skáče po platformách, zbiera kryštály a ovocie a musí sa dostať do cieľa v časovom limite. V hre sú padajúce platformy, pohyblivé prekážky s časovou penalizáciou, checkpointy, hudba, zvukové a časticové efekty a menu so štartom, pauzou a obrazovkou výhry či prehry. Hru som vytvoril sám.</p>
           <div class="tech"><span>Unity</span><span>C#</span><span data-i18n="pk.tech">3D hra</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="research">
           <div class="top-row"><span class="num">06</span><span class="badge" data-i18n="pr.badge">Výskum</span></div>
           <h3 data-i18n="pr.t">Životný cyklus issues na GitHube</h3>
-          <p data-i18n="pr.d">Vedecký článok vo formáte IEEE (zatiaľ rozpracovaný) o tom, aké rôznorodé sú životné cykly hlásení chýb a požiadaviek (issues) v open-source projektoch, či závisia od typu issue a ako súvisia s tým, ako dlho ostanú otvorené. Cez GitHub API som zozbieral a v Pythone analyzoval 5&nbsp;682 issues a 72&nbsp;472 udalostí z 31 populárnych repozitárov, vrátane štatistiky a analýzy prežitia.</p>
+          <p data-i18n="pr.d">Vedecký článok vo formáte IEEE (zatiaľ rozpracovaný) o životných cykloch hlásení chýb a požiadaviek (issues) v open-source projektoch: aké sú rôznorodé, či závisia od typu issue a ako súvisia s tým, ako dlho ostanú otvorené. Cez GitHub API som zozbieral a v Pythone analyzoval 5&nbsp;682 issues a 72&nbsp;472 udalostí z 31 populárnych repozitárov vrátane štatistiky a analýzy prežitia.</p>
           <div class="tech"><span>Python</span><span>GitHub API</span><span data-i18n="pr.tech">Štatistika</span><span>LaTeX</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="research">
           <div class="top-row"><span class="num">07</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
           <h3 data-i18n="p1.t">Odšumovanie obrazu</h3>
-          <p data-i18n="p1.d">Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
+          <p data-i18n="p1.d">Porovnal som päť klasických metód odšumovania (napr. mediánový a bilaterálny filter či metódu NLM) na 51 obrázkoch s tromi typmi šumu. Experimenty som robil v Pythone, kvalitu som hodnotil metrikami PSNR a SSIM a porovnal som aj rýchlosť metód. Výsledkom sú odporúčania, ktorú metódu použiť pri akom type šumu.</p>
           <div class="links"><a href="docs/bakalarska-praca-samuel-bechera.pdf" target="_blank" rel="noopener"><svg class="i"><use href="#i-doc"/></svg><span data-i18n="p1.pdf">Čítať prácu (PDF)</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Python</span><span data-i18n="p1.tech">Spracovanie obrazu</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="web">
           <div class="top-row"><span class="num">08</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
           <h3 data-i18n="p2.t">Webová aplikácia na odšumovanie obrázkov</h3>
           <p data-i18n="p2.d">Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
           <div class="links"><a href="https://www.youtube.com/watch?v=OopjPfRAJ-o" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg><span data-i18n="vid">Pozrieť video</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card reveal" data-tags="web ai">
           <div class="top-row"><span class="num">09</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
           <h3 data-i18n="p4.t">Táto stránka</h3>
           <p data-i18n="p4.d">Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Je v slovenčine aj angličtine, funguje na mobile aj na počítači a má svetlý aj tmavý režim.</p>
           <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>AI</span></div>
         </article>
       </div>
+      <p class="empty" hidden data-i18n="f.none">V tejto kategórii zatiaľ nič nie je.</p>
     </div>
   </section>
 
@@ -591,7 +648,7 @@
             <li>
               <div class="when">2023 – 2026</div>
               <h4 data-i18n="e2.t">Bc. · Informatika · Technická univerzita v Košiciach</h4>
-              <p data-i18n="e2.d">Bakalárska práca: Metódy odstránenia šumu a vylepšovania obrazu. Predmety: Databázové systémy, Softvérové inžinierstvo, Webové technológie, Používateľské rozhrania (UX), Programovanie.</p>
+              <p data-i18n="e2.d">Bakalárska práca: Metódy odstraňovania šumu a vylepšovania obrazov. Predmety: Databázové systémy, Softvérové inžinierstvo, Webové technológie, Používateľské rozhrania (UX), Programovanie.</p>
             </li>
             <li>
               <div class="when">2018 – 2023</div>
@@ -628,7 +685,7 @@
               <li>
                 <div class="when">2023 – 2025</div>
                 <h4 data-i18n="w2.t">Pomocný pracovník pri sťahovaní · príležitostne</h4>
-                <p data-i18n="w2.d">Spoľahlivosť a tímová spolupráca pri fyzicky náročnej práci.</p>
+                <p data-i18n="w2.d">Fyzicky náročná práca, pri ktorej záležalo na spoľahlivosti a spolupráci v tíme.</p>
               </li>
             </ul>
           </div>
@@ -669,19 +726,22 @@
      Slovenský text je priamo v HTML vyššie, tu je len anglická verzia. */
   var EN = {
     'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects', 'nav.exp': 'Experience', 'nav.contact': 'Contact',
-    'hero.status': 'Open to internships and IT jobs',
+    'hero.status': 'Looking for a part-time or full-time IT job',
     'hero.hi': 'Hi, my name is',
-    'hero.lead': 'Computer Science student at the Technical University of Košice. I have a foundation in web development, programming, databases and networking, and I’m looking for my first opportunity in IT where I can learn and grow. I’m most drawn to AI tools, the web and cybersecurity.',
+    'hero.lead': 'I’m a Computer Science student at the Technical University of Košice. I have a solid foundation in web development, programming, databases and networking, and I’m looking for my first opportunity in IT where I can learn and grow. I’m most drawn to AI tools, the web and cybersecurity.',
     'hero.cta1': 'Get in touch', 'hero.cta2': 'See my projects',
     'fact.loc': 'Košice, Slovakia', 'fact.study': 'Computer Science, TU Košice', 'fact.lang': 'Slovak · English C1',
     'about.eyebrow': 'About', 'about.title': 'Who I am and what I enjoy',
-    'about.p1': 'I hold a Bachelor’s degree in Computer Science from the Technical University of Košice and I’m now in the first year of my Master’s (Ing.) studies. During my studies I programmed, built web applications, worked with relational databases in SQL and developed a team project using an agile approach.',
-    'about.p2': 'I’m more of a creative type – I enjoy coming up with solutions and I care about applications being simple and pleasant to use. I use AI assistants every day for projects and learning, and I want to keep getting better at it. I learn fast and enjoy picking up new tools.',
-    'about.open': 'I’m open to roles in',
+    'about.p1': 'I completed my Bachelor’s degree in Computer Science at the Technical University of Košice and I’m now in the first year of my Master’s (Ing.) studies. During my studies I programmed in Python, Java and C, built web applications, worked with relational databases and developed software in a team using agile practices.',
+    'about.p2': 'I’m more of a creative type – I enjoy coming up with solutions and I care about applications being simple and pleasant to use. I use AI assistants daily for both projects and learning, and I want to keep getting better at it. I learn fast and enjoy picking up new tools.',
+    'about.open': 'I’m interested in roles in',
     'int.ai': 'AI & automation', 'int.ai.d': 'Working with AI tools and applying them in practice',
     'int.web': 'Web & UX', 'int.web.d': 'Building websites that are easy to use',
     'int.sec': 'Cybersecurity', 'int.sec.d': 'Networks and system protection (Cisco CCNA)',
     'int.qa': 'Software testing', 'int.qa.d': 'Finding bugs and verifying functionality',
+    'hob.t': 'Outside of tech', 'hob.gym': 'Working out', 'hob.gym.d': 'I work out regularly.',
+    'hob.fish': 'Fishing', 'hob.fish.d': 'I used to go fishing a lot.',
+    'f.all': 'All', 'f.game': 'Games', 'f.research': 'Research', 'f.none': 'Nothing in this category yet.',
     'skills.eyebrow': 'Skills', 'skills.title': 'What I work with',
     'sk.web': 'Web & design', 'sk.ux': 'UX / user interfaces',
     'sk.prog': 'Programming & databases',
@@ -691,13 +751,13 @@
     'sk.soft': 'Strengths', 'sk.s1': 'Analytical thinking', 'sk.s2': 'Attention to detail', 'sk.s3': 'Fast learner', 'sk.s4': 'Teamwork',
     'proj.eyebrow': 'Projects', 'proj.title': 'What I’ve worked on',
     'p0.badge': 'Featured project', 'p0.t': 'TAIS – academic information system',
-    'p0.d': 'A complete web application for a university, inspired by the MAIS and AiS2 systems. It has 8 user types (student, teacher, study office, administrators and more) and modules such as course enrolment, grading, exam terms, timetables, theses, accommodation, canteen, internal messaging and a campus map. I designed and built the whole project myself as part of a Master’s course.',
+    'p0.d': 'A complete web application for a university, inspired by the MAIS and AiS2 systems. It has 8 user types (student, teacher, study office, administrators and more) and modules such as course enrollment, grading, exam scheduling, timetables, theses, accommodation, dining, internal messaging and a campus map. I designed and built the whole project myself as part of a Master’s course.',
     'p0.note': 'The code is in a private university repository – happy to walk you through it in an interview.',
     'p0.h1': '<strong>AI assistant</strong> (OpenAI API) that answers students’ questions, only sees data the user is allowed to access, and resists attempts to bypass its rules.',
     'p0.h2': '<strong>Security:</strong> OWASP-recommended password hashing, brute-force protection, server-side permission checks and security headers.',
     'p0.h3': '<strong>Testing:</strong> over 600 automated tests plus browser tests on desktop and mobile.',
     'p0.h4': '<strong>Deployed</strong> with Docker to a university server.',
-    'pg.d': 'A short 3D game about procrastination. Instead of studying, you keep scrolling on your phone and need to collect 50 “Doom Points” without getting caught by your mom. Events like a Wi-Fi outage or an open window interrupt you. It was made at a game jam under the RunTime Rebels team name, but I programmed and built most of the game myself. It’s published on itch.io.',
+    'pg.d': 'A short 3D game about procrastination. Instead of studying, the player keeps scrolling on their phone and has to collect 50 “Doom Points” without getting caught by Mom. Events such as a Wi-Fi outage or an open window get in the way. It was made at a game jam under the team name RunTime Rebels, but I programmed and built most of the game myself. It’s published on itch.io.',
     'pg.play': 'Play on itch.io',
     'po.badge': 'Team project · IBM',
     'po.d': 'A FEI TUKE team project in cooperation with IBM Slovakia, which I work on as a member of the development team. An AI assistant that answers questions about dealing with the city office (parking card, dog tax…) based on official documents, cites the source of every answer and can prefill the required form.',
@@ -709,15 +769,15 @@
     'po.m5': 'sign-in and registration screens in Flutter',
     'po.m6': 'automated tests and technical documentation',
     'pc.badge': 'Web game',
-    'pc.d': 'Sudoku where you fill in colours instead of numbers. The game has a console and a web version, user login, a high-score leaderboard, ratings and comments via a REST API, and database storage. I built it on my own for the Component Programming course.',
+    'pc.d': 'Sudoku where you fill in colors instead of numbers. The game has a console and a web version, user login, a high-score leaderboard, ratings and comments via a REST API, and database storage. I built it on my own for the Component Programming course.',
     'pk.badge': 'Unity game', 'pk.t': '3D parkour game',
     'pk.d': 'A 3D platformer with two levels. The player jumps across platforms, collects crystals and fruit and has to reach the goal within a time limit. The game features falling platforms, moving obstacles with time penalties, checkpoints, music, sound and particle effects, and menus with start, pause and win/lose screens. I built the game on my own.',
     'pk.tech': '3D game',
     'pr.badge': 'Research', 'pr.t': 'Issue lifecycles on GitHub',
-    'pr.d': 'An IEEE-style research paper (work in progress) on how varied the lifecycles of bug reports and feature requests (issues) are in open-source projects, whether they depend on the issue type, and how they relate to how long issues stay open. Using the GitHub API, I collected and analysed in Python 5,682 issues and 72,472 events from 31 popular repositories, including statistics and survival analysis.',
+    'pr.d': 'An IEEE-style research paper (work in progress) on how varied the lifecycles of bug reports and feature requests (issues) are in open-source projects, whether they depend on the issue type, and how they relate to how long issues stay open. Using the GitHub API and Python, I collected and analyzed 5,682 issues and 72,472 events from 31 popular repositories, including statistical and survival analysis.',
     'pr.tech': 'Statistics', 'vid': 'Watch the video',
     'p1.badge': 'Bachelor’s thesis', 'p1.t': 'Image denoising',
-    'p1.d': 'I researched different types of noise in digital images and methods for removing them. I implemented the methods in Python and compared them to find the most suitable one for each type of noise.',
+    'p1.d': 'I compared five classic denoising methods (such as the median and bilateral filters and Non-Local Means) on 51 images with three types of noise. I ran the experiments in Python, evaluated quality with the PSNR and SSIM metrics and also compared the speed of each method. The result is a set of recommendations on which method to use for which type of noise.',
     'p1.pdf': 'Read the thesis (PDF, in Slovak)',
     'p1.tech': 'Image processing',
     'p2.badge': 'University project', 'p2.t': 'Image denoising web app',
@@ -728,14 +788,14 @@
     'exp.edu': 'Education', 'exp.cert': 'Certificates', 'exp.work': 'Work experience',
     'e1.when': '2026 – present', 'e1.t': 'Master’s (Ing.) · Computer Science · Technical University of Košice', 'e1.d': 'First year of Master’s studies.',
     'e2.t': 'Bachelor’s (Bc.) · Computer Science · Technical University of Košice',
-    'e2.d': 'Thesis: Methods for image denoising and enhancement. Courses: Database Systems, Software Engineering, Web Technologies, User Interfaces (UX), Programming.',
+    'e2.d': 'Thesis: Methods for Image Denoising and Enhancement. Courses: Database Systems, Software Engineering, Web Technologies, User Interfaces (UX), Programming.',
     'e3.t': 'Church Bilingual Grammar School, Stará Ľubovňa', 'e3.d': 'Secondary school leaving exam (Maturita).',
     'c1.when': 'May 2025', 'c1.d': 'Computer networking fundamentals, IP addressing, routing, switching and network security basics.', 'c1.link': 'Verify certificate',
     'c2.when': 'April 2023', 'c2.d': 'International project on communication, teamwork and intercultural understanding.',
     'w1.when': 'Summers 2025 & 2026', 'w1.t': 'Swimming pool staff · seasonal job', 'w1.d': 'Selling tickets and refreshments, customer service and managing the cash register.',
-    'w2.t': 'Moving assistant · occasional work', 'w2.d': 'Reliability and teamwork in physically demanding work.',
+    'w2.t': 'Moving helper · occasional work', 'w2.d': 'Physically demanding work where reliability and teamwork mattered.',
     'ct.eyebrow': 'Contact', 'ct.title': 'Let’s work together',
-    'ct.text': 'Looking for someone to join your team or for an internship? Feel free to send me a message – I’ll be happy to get back to you.',
+    'ct.text': 'Looking for someone to join your team, or for a part-time role? Feel free to send me a message – I’ll be happy to get back to you.',
     'ct.mail': 'Send an email', 'ct.copy': 'Copy email',
     'ft.made': 'Built with the help of AI'
   };
@@ -806,6 +866,25 @@
     var onChange = function (e) { if (!load('theme')) root.setAttribute('data-theme', e.matches ? 'dark' : 'light'); };
     if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
   }
+
+  /* ---------- Filter projektov ---------- */
+  var fBtns = document.querySelectorAll('.filters button');
+  var cards = document.querySelectorAll('.projects .card');
+  fBtns.forEach(function (b) {
+    var f = b.getAttribute('data-f'), n = 0;
+    cards.forEach(function (c) { if (f === 'all' || (' ' + c.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') > -1) n++; });
+    b.querySelector('i').textContent = n;
+    b.addEventListener('click', function () {
+      var shown = 0;
+      fBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      cards.forEach(function (c) {
+        var ok = f === 'all' || (' ' + c.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') > -1;
+        c.hidden = !ok;
+        if (ok) { shown++; c.classList.add('in'); c.classList.remove('pop'); void c.offsetWidth; c.classList.add('pop'); }
+      });
+      document.querySelector('.empty').hidden = shown > 0;
+    });
+  });
 
   /* ---------- Kopírovanie e-mailu ---------- */
   var toast = document.getElementById('toast'), toastTimer;
