@@ -876,9 +876,9 @@
   };
   var META = {
     sk: { title: 'Samuel Bechera – Portfólio', desc: 'Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.',
-          copied: 'E-mail skopírovaný', nomail: 'E-mailová aplikácia sa neotvorila – adresu som skopíroval do schránky.', theme: 'Prepnúť svetlý / tmavý režim' },
+          copied: 'E-mail skopírovaný', nomail: 'E-mailová aplikácia sa neotvorila – adresu som skopíroval do schránky.', nomail2: 'E-mailová aplikácia sa neotvorila – napíšte mi na samuelbechera@gmail.com', theme: 'Prepnúť svetlý / tmavý režim' },
     en: { title: 'Samuel Bechera – Portfolio', desc: 'Samuel Bechera – Computer Science student from Košice, Slovakia. Web, AI, programming and cybersecurity.',
-          copied: 'Email copied', nomail: 'No email app opened – the address has been copied to your clipboard.', theme: 'Toggle light / dark mode' }
+          copied: 'Email copied', nomail: 'No email app opened – the address has been copied to your clipboard.', nomail2: 'No email app opened – write to me at samuelbechera@gmail.com', theme: 'Toggle light / dark mode' }
   };
 
   function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
@@ -993,11 +993,11 @@
     toast.textContent = msg; toast.classList.add('show');
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove('show'); }, ms || 2000);
   }
-  function copyMail(cb) {
+  function copyMail(ok, fail) {
     var mail = 'samuelbechera@gmail.com';
     if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(mail).then(cb, function () {});
-    }
+      navigator.clipboard.writeText(mail).then(ok, fail);
+    } else { fail(); }
   }
   /* Ak sa po kliknutí na „Napísať e-mail“ neotvorí žiadna e-mailová aplikácia
      (okno nestratí fokus), adresu skopírujeme a dáme o tom vedieť. */
@@ -1010,7 +1010,8 @@
       window.removeEventListener('blur', onBlur);
       document.removeEventListener('visibilitychange', onBlur);
       if (!left && document.hasFocus()) {
-        copyMail(function () { showToast(META[currentLang].nomail, 5000); });
+        copyMail(function () { showToast(META[currentLang].nomail, 5000); },
+                 function () { showToast(META[currentLang].nomail2, 6000); });
       }
     }, 1200);
   });
