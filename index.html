@@ -327,6 +327,31 @@
   @keyframes pop { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
   .empty { margin-top: 8px; }
 
+  /* Galéria TAIS */
+  .gallery { display: grid; grid-template-columns: 2fr 1.4fr 1.4fr 1.4fr 0.9fr; gap: 10px; margin-top: 26px; }
+  .shot { position: relative; padding: 0; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; cursor: zoom-in; background: var(--surface-2); aspect-ratio: 4 / 3; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top left; display: block; transition: transform .35s ease; }
+  .shot:hover img { transform: scale(1.05); }
+  .shot .cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 10px 7px; font-size: .74rem; font-weight: 500; color: #fff; text-align: left;
+    background: linear-gradient(transparent, rgba(0,0,0,.72)); opacity: 0; transition: opacity .2s; }
+  .shot:hover .cap, .shot:focus-visible .cap { opacity: 1; }
+  .gal-note { margin-top: 10px; font-size: .8rem !important; color: var(--faint) !important; }
+  @media (max-width: 760px) {
+    .gallery { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 6px; }
+    .shot { flex: 0 0 72%; scroll-snap-align: start; }
+    .shot .cap { opacity: 1; }
+  }
+  .lightbox { border: 0; padding: 0; background: transparent; max-width: 96vw; max-height: 94vh; overflow: visible; }
+  .lightbox::backdrop { background: rgba(5,5,10,.86); backdrop-filter: blur(4px); }
+  .lightbox figure { margin: 0; text-align: center; }
+  .lightbox img { max-width: 92vw; max-height: 82vh; border-radius: 10px; display: block; margin: 0 auto; box-shadow: 0 20px 60px rgba(0,0,0,.5); background: #fff; }
+  .lightbox figcaption { color: #e4e4e7; font-size: .92rem; margin-top: 12px; }
+  .lb-close, .lb-nav { position: fixed; border: 0; cursor: pointer; color: #fff; background: rgba(255,255,255,.12); border-radius: 999px; width: 44px; height: 44px; font-size: 1.6rem; line-height: 1; display: grid; place-items: center; }
+  .lb-close:hover, .lb-nav:hover { background: rgba(255,255,255,.24); }
+  .lb-close { top: 16px; right: 16px; }
+  .lb-prev { left: 16px; top: 50%; transform: translateY(-50%); }
+  .lb-next { right: 16px; top: 50%; transform: translateY(-50%); }
+
   /* Časová os */
   .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
   @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 40px; } }
@@ -556,6 +581,14 @@
               <li><span class="ic"><svg class="i"><use href="#i-box"/></svg></span><span data-i18n="p0.h4"><strong>Nasadenie</strong> cez Docker na školský server.</span></li>
             </ul>
           </div>
+          <div class="gallery" aria-label="Ukážky TAIS">
+            <button type="button" class="shot" data-src="img/tais-1-login.webp"><img src="img/tais-1-login.webp" alt="" width="1518" height="639" loading="lazy"><span class="cap" data-i18n="g1">Prihlasovacia stránka</span></button>
+            <button type="button" class="shot" data-src="img/tais-2-dashboard.webp"><img src="img/tais-2-dashboard.webp" alt="" width="1050" height="569" loading="lazy"><span class="cap" data-i18n="g2">Prehľad študenta s úlohami a štúdiom</span></button>
+            <button type="button" class="shot" data-src="img/tais-3-rozvrh.webp"><img src="img/tais-3-rozvrh.webp" alt="" width="1026" height="367" loading="lazy"><span class="cap" data-i18n="g3">Týždenný rozvrh</span></button>
+            <button type="button" class="shot" data-src="img/tais-4-mapa.webp"><img src="img/tais-4-mapa.webp" alt="" width="990" height="612" loading="lazy"><span class="cap" data-i18n="g4">Mapa univerzitného areálu</span></button>
+            <button type="button" class="shot" data-src="img/tais-5-ai.webp"><img src="img/tais-5-ai.webp" alt="" width="344" height="489" loading="lazy"><span class="cap" data-i18n="g5">AI asistent odpovedá z údajov študenta</span></button>
+          </div>
+          <p class="gal-note" data-i18n="g.note">Ukážky zo zverejnenej demo verzie so syntetickými (vymyslenými) údajmi.</p>
           <div class="tech wide"><span>React</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>OpenAI API</span></div>
         </article>
         <article class="card media reveal" data-tags="game">
@@ -714,6 +747,13 @@
   </section>
 </main>
 
+<dialog class="lightbox" id="lightbox" aria-label="Náhľad">
+  <button type="button" class="lb-close" aria-label="Zavrieť">×</button>
+  <button type="button" class="lb-nav lb-prev" aria-label="Predchádzajúca">‹</button>
+  <figure><img alt=""><figcaption></figcaption></figure>
+  <button type="button" class="lb-nav lb-next" aria-label="Ďalšia">›</button>
+</dialog>
+
 <footer>
   <div class="wrap">
     <span>© 2026 Samuel Bechera</span>
@@ -753,6 +793,12 @@
     'sk.langs': 'Languages', 'sk.sk': 'Slovak – native', 'sk.en': 'English – C1',
     'sk.soft': 'Strengths', 'sk.s1': 'Analytical thinking', 'sk.s2': 'Attention to detail', 'sk.s3': 'Fast learner', 'sk.s4': 'Teamwork',
     'proj.eyebrow': 'Projects', 'proj.title': 'What I’ve worked on',
+    'g1': 'Sign-in page',
+    'g2': 'Student dashboard with tasks and study overview',
+    'g3': 'Weekly timetable',
+    'g4': 'University campus map',
+    'g5': 'AI assistant answering from the student’s own data',
+    'g.note': 'Screenshots from the published demo version with synthetic (made-up) data.',
     'p0.badge': 'Featured project', 'p0.t': 'TAIS – academic information system',
     'p0.d': 'A complete web application for a university, inspired by the MAIS and AiS2 systems. It has 8 user types (student, teacher, study office, administrators and more) and modules such as course enrollment, grading, exam scheduling, timetables, theses, accommodation, dining, internal messaging and a campus map. I designed and built the whole project myself as part of a Master’s course.',
     'p0.note': 'The code is in a private university repository – happy to walk you through it in an interview.',
@@ -887,6 +933,32 @@
       });
       document.querySelector('.empty').hidden = shown > 0;
     });
+  });
+
+  /* ---------- Galéria (lightbox) ---------- */
+  var lb = document.getElementById('lightbox');
+  var shotsEls = Array.prototype.slice.call(document.querySelectorAll('.shot'));
+  var cur = 0;
+  function showShot(i) {
+    cur = (i + shotsEls.length) % shotsEls.length;
+    var b = shotsEls[cur];
+    lb.querySelector('img').src = b.getAttribute('data-src');
+    lb.querySelector('figcaption').textContent = b.querySelector('.cap').textContent;
+  }
+  shotsEls.forEach(function (b, i) {
+    b.addEventListener('click', function () {
+      showShot(i);
+      if (lb.showModal) lb.showModal(); else window.open(b.getAttribute('data-src'), '_blank');
+    });
+  });
+  lb.querySelector('.lb-close').addEventListener('click', function () { lb.close(); });
+  lb.querySelector('.lb-prev').addEventListener('click', function () { showShot(cur - 1); });
+  lb.querySelector('.lb-next').addEventListener('click', function () { showShot(cur + 1); });
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.open) return;
+    if (e.key === 'ArrowLeft') showShot(cur - 1);
+    if (e.key === 'ArrowRight') showShot(cur + 1);
   });
 
   /* ---------- Kopírovanie e-mailu ---------- */
