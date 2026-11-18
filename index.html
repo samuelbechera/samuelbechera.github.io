@@ -5,274 +5,708 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Samuel Bechera – Portfólio</title>
 <meta name="description" content="Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.">
+<meta name="theme-color" content="#09090b" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234f46e5'/%3E%3Cstop offset='1' stop-color='%239333ea'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-size='26' font-weight='700' fill='white' text-anchor='middle'%3ESB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<script>
+  /* Motív nastavíme hneď, aby stránka pri načítaní nebliká. */
+  (function () {
+    var t = null;
+    try { t = localStorage.getItem('theme'); } catch (e) {}
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+    document.documentElement.setAttribute('data-theme', t);
+    document.documentElement.classList.add('js');
+  })();
+</script>
+
 <style>
+  /* ---------- Farby (svetlý / tmavý motív) ---------- */
   :root {
-    --bg: #fafaf9;
+    --bg: #fafafa;
     --surface: #ffffff;
-    --text: #1c1917;
-    --muted: #57534e;
-    --border: #e7e5e4;
-    --accent: #2563eb;
-    --accent-soft: #dbeafe;
+    --surface-2: #f4f4f5;
+    --text: #18181b;
+    --muted: #52525b;
+    --faint: #a1a1aa;
+    --border: #e4e4e7;
+    --accent: #4f46e5;
+    --accent-2: #9333ea;
+    --accent-text: #4338ca;
+    --accent-soft: rgba(79, 70, 229, 0.08);
+    --glow: rgba(99, 102, 241, 0.16);
+    --green: #16a34a;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 8px 24px -8px rgba(0,0,0,.08);
+    --shadow-hover: 0 2px 4px rgba(0,0,0,.04), 0 16px 40px -12px rgba(79,70,229,.25);
+    color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
-      --bg: #0c0a09;
-      --surface: #1c1917;
-      --text: #f5f5f4;
-      --muted: #a8a29e;
-      --border: #292524;
-      --accent: #60a5fa;
-      --accent-soft: #172554;
+      --bg: #09090b; --surface: #131316; --surface-2: #1c1c21; --text: #fafafa;
+      --muted: #a1a1aa; --faint: #71717a; --border: #27272a; --accent: #818cf8;
+      --accent-2: #c084fc; --accent-text: #a5b4fc; --accent-soft: rgba(129,140,248,.12);
+      --glow: rgba(129,140,248,.14); --green: #4ade80;
+      --shadow: 0 1px 2px rgba(0,0,0,.3); --shadow-hover: 0 16px 40px -12px rgba(129,140,248,.25);
+      color-scheme: dark;
     }
   }
   :root[data-theme="dark"] {
-    --bg: #0c0a09;
-    --surface: #1c1917;
-    --text: #f5f5f4;
-    --muted: #a8a29e;
-    --border: #292524;
-    --accent: #60a5fa;
-    --accent-soft: #172554;
+    --bg: #09090b; --surface: #131316; --surface-2: #1c1c21; --text: #fafafa;
+    --muted: #a1a1aa; --faint: #71717a; --border: #27272a; --accent: #818cf8;
+    --accent-2: #c084fc; --accent-text: #a5b4fc; --accent-soft: rgba(129,140,248,.12);
+    --glow: rgba(129,140,248,.14); --green: #4ade80;
+    --shadow: 0 1px 2px rgba(0,0,0,.3); --shadow-hover: 0 16px 40px -12px rgba(129,140,248,.25);
+    color-scheme: dark;
   }
 
+  /* ---------- Základ ---------- */
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 80px; }
   body {
     font-family: "Inter", system-ui, sans-serif;
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    transition: background-color .3s ease, color .3s ease;
   }
-  a { color: var(--accent); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+  h1, h2, h3, .logo { font-family: "Space Grotesk", "Inter", sans-serif; }
+  a { color: var(--accent-text); text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+  @media (min-width: 640px) { .wrap { padding: 0 32px; } }
+  .grad {
+    background: linear-gradient(120deg, var(--accent), var(--accent-2));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  svg.i { width: 18px; height: 18px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
-  /* Navigácia */
-  nav {
-    position: sticky; top: 0; z-index: 10;
-    background: color-mix(in srgb, var(--bg) 85%, transparent);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
+  /* Pozadie úvodu: jemná mriežka a žiara */
+  .bg-deco {
+    position: absolute; inset: 0 0 auto 0; height: 720px; z-index: -1; pointer-events: none;
+    background:
+      radial-gradient(600px 320px at 20% 10%, var(--glow), transparent 70%),
+      radial-gradient(500px 300px at 85% 30%, var(--glow), transparent 70%);
   }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 56px; }
-  nav .logo { font-weight: 700; color: var(--text); }
-  nav ul { display: flex; gap: 20px; list-style: none; }
-  nav ul a { color: var(--muted); font-size: 0.95rem; }
-  nav ul a:hover { color: var(--text); text-decoration: none; }
-  @media (max-width: 600px) { nav ul { display: none; } }
+  .bg-deco::after {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(var(--border) 1px, transparent 1px);
+    background-size: 24px 24px;
+    mask-image: linear-gradient(to bottom, black, transparent 85%);
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
+    opacity: .7;
+  }
 
-  /* Úvod */
-  header.hero { padding: 88px 0 64px; }
-  .hero .tag {
-    display: inline-block; font-size: 0.85rem; font-weight: 500;
-    background: var(--accent-soft); color: var(--accent);
-    padding: 4px 12px; border-radius: 999px; margin-bottom: 20px;
+  /* ---------- Navigácia ---------- */
+  nav.top {
+    position: sticky; top: 0; z-index: 20;
+    background: color-mix(in srgb, var(--bg) 78%, transparent);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .2s ease;
   }
-  .hero h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1.1; letter-spacing: -0.02em; }
-  .hero p.lead { font-size: 1.2rem; color: var(--muted); margin-top: 16px; max-width: 600px; }
-  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  nav.top.scrolled { border-bottom-color: var(--border); }
+  nav.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 64px; gap: 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); font-size: 1.05rem; }
+  .logo:hover { text-decoration: none; }
+  .logo .mark {
+    width: 32px; height: 32px; border-radius: 9px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: #fff; font-size: .8rem;
+  }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a { color: var(--muted); font-size: .92rem; font-weight: 500; padding: 6px 12px; border-radius: 8px; transition: color .15s, background .15s; }
+  .nav-links a:hover, .nav-links a.active { color: var(--text); background: var(--surface-2); text-decoration: none; }
+  @media (max-width: 860px) { .nav-links { display: none; } }
+
+  .controls { display: flex; align-items: center; gap: 8px; }
+  .seg {
+    display: flex; padding: 3px; border-radius: 10px;
+    background: var(--surface-2); border: 1px solid var(--border);
+  }
+  .seg button {
+    font: 600 .78rem/1 "Inter", sans-serif; letter-spacing: .04em;
+    padding: 7px 10px; border-radius: 7px; border: 0; cursor: pointer;
+    background: transparent; color: var(--faint); transition: all .15s;
+  }
+  .seg button[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: var(--shadow); }
+  .icon-btn {
+    width: 38px; height: 38px; display: grid; place-items: center; cursor: pointer;
+    border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+    transition: transform .15s, background .15s;
+  }
+  .icon-btn:hover { background: var(--surface); }
+  .icon-btn:active { transform: scale(.94); }
+  .icon-btn .sun, :root[data-theme="dark"] .icon-btn .moon { display: none; }
+  :root[data-theme="dark"] .icon-btn .sun { display: block; }
+
+  /* ---------- Úvod ---------- */
+  header.hero { position: relative; padding: 80px 0 96px; }
+  .hero-grid { display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center; }
+  @media (max-width: 760px) { .hero-grid { grid-template-columns: 1fr; gap: 32px; } .avatar { order: -1; } }
+  .status {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: .85rem; font-weight: 500; color: var(--muted);
+    padding: 6px 14px 6px 10px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border); box-shadow: var(--shadow);
+  }
+  .dot { position: relative; width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .dot::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--green); animation: ping 2s ease-out infinite; }
+  @keyframes ping { 0% { transform: scale(1); opacity: .7; } 100% { transform: scale(2.8); opacity: 0; } }
+  .hero h1 {
+    font-size: clamp(2.5rem, 7vw, 4.4rem); line-height: 1.04; letter-spacing: -0.035em;
+    margin-top: 24px; font-weight: 700;
+  }
+  .hero h1 .hi { display: block; font-size: .42em; letter-spacing: -0.01em; color: var(--muted); font-weight: 500; margin-bottom: 6px; }
+  .hero .lead { font-size: clamp(1.05rem, 2.2vw, 1.2rem); color: var(--muted); margin-top: 22px; max-width: 580px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
   .btn {
-    display: inline-block; padding: 11px 22px; border-radius: 8px;
-    font-weight: 600; font-size: 0.95rem; border: 1px solid var(--border);
-    color: var(--text); background: var(--surface);
+    display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px;
+    font-weight: 600; font-size: .95rem; border: 1px solid var(--border);
+    color: var(--text); background: var(--surface); box-shadow: var(--shadow);
+    transition: transform .15s, box-shadow .15s, border-color .15s; cursor: pointer; font-family: inherit;
   }
-  .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
-  .btn:hover { text-decoration: none; opacity: 0.9; }
+  .btn:hover { text-decoration: none; transform: translateY(-2px); border-color: var(--faint); }
+  .btn.primary { background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-color: transparent; color: #fff; }
+  .btn.primary:hover { box-shadow: var(--shadow-hover); }
+  .facts { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 36px; color: var(--muted); font-size: .9rem; list-style: none; }
+  .facts li { display: flex; align-items: center; gap: 8px; }
+  .facts svg { color: var(--faint); }
 
-  /* Sekcie */
-  section { padding: 56px 0; border-top: 1px solid var(--border); }
-  section h2 { font-size: 1.6rem; margin-bottom: 24px; letter-spacing: -0.01em; }
-  section p { color: var(--muted); max-width: 680px; }
-  section p + p { margin-top: 12px; }
-
-  .skills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skills span {
-    padding: 6px 14px; border-radius: 999px; font-size: 0.9rem;
-    background: var(--surface); border: 1px solid var(--border);
+  .avatar { position: relative; width: 220px; height: 220px; }
+  .avatar .ring {
+    position: absolute; inset: 0; border-radius: 32px; padding: 2px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    transform: rotate(6deg); opacity: .35;
   }
-  .skill-group + .skill-group { margin-top: 20px; }
-  .skill-group h3 { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin-bottom: 10px; font-weight: 600; }
+  .avatar .face {
+    position: absolute; inset: 0; border-radius: 32px; display: grid; place-items: center;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff; font: 700 4.5rem/1 "Space Grotesk", sans-serif; letter-spacing: -0.04em;
+    box-shadow: var(--shadow-hover);
+  }
+  @media (max-width: 760px) { .avatar { width: 96px; height: 96px; } .avatar .ring, .avatar .face { border-radius: 22px; } .avatar .face { font-size: 2rem; } }
 
-  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  /* ---------- Sekcie ---------- */
+  section { padding: 88px 0; }
+  section + section { border-top: 1px solid var(--border); }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 600 .78rem/1 "Inter", sans-serif; letter-spacing: .12em; text-transform: uppercase; color: var(--accent-text);
+  }
+  .eyebrow::before { content: ""; width: 24px; height: 2px; border-radius: 2px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  section h2 { font-size: clamp(1.8rem, 4vw, 2.4rem); letter-spacing: -0.025em; line-height: 1.15; margin: 14px 0 36px; }
+  section p { color: var(--muted); }
+
+  /* O mne */
+  .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
+  @media (max-width: 760px) { .about { grid-template-columns: 1fr; } }
+  .about p { font-size: 1.05rem; }
+  .about p + p { margin-top: 16px; }
+  .panel { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 24px; box-shadow: var(--shadow); }
+  .panel h3 { font-size: 1rem; margin-bottom: 16px; }
+  .interests { list-style: none; display: grid; gap: 12px; }
+  .interests li { display: flex; gap: 12px; align-items: flex-start; }
+  .interests .ic { width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-text); flex-shrink: 0; }
+  .interests strong { display: block; font-size: .95rem; font-weight: 600; }
+  .interests span { font-size: .87rem; color: var(--muted); }
+
+  /* Zručnosti */
+  .skill-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 16px; }
+  .skill-card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .skill-card h3 { display: flex; align-items: center; gap: 10px; font-size: 1rem; margin-bottom: 16px; }
+  .skill-card h3 svg { color: var(--accent-text); }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips span { padding: 5px 12px; border-radius: 8px; font-size: .86rem; background: var(--surface-2); border: 1px solid var(--border); }
+
+  /* Projekty */
+  .projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
   .card {
-    background: var(--surface); border: 1px solid var(--border);
-    border-radius: 12px; padding: 22px; display: flex; flex-direction: column;
+    position: relative; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 26px; display: flex; flex-direction: column;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
   }
-  .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-  .card p { font-size: 0.95rem; flex: 1; }
-  .card .tech { display: flex; flex-wrap: wrap; gap: 6px; margin: 16px 0; }
-  .card .tech span { font-size: 0.78rem; padding: 2px 9px; border-radius: 6px; background: var(--accent-soft); color: var(--accent); }
-  .card .links { display: flex; gap: 16px; font-size: 0.9rem; font-weight: 500; }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+  .card .top-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .card .num { font: 600 .85rem/1 "Space Grotesk", sans-serif; color: var(--faint); }
+  .badge { font-size: .74rem; font-weight: 600; padding: 4px 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); }
+  .card h3 { font-size: 1.2rem; letter-spacing: -0.01em; margin-bottom: 10px; line-height: 1.3; }
+  .card p { font-size: .94rem; flex: 1; }
+  .card .tech { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 20px; padding-top: 18px; border-top: 1px dashed var(--border); }
+  .card .tech span { font-size: .76rem; font-weight: 500; color: var(--muted); }
+  .card .tech span + span::before { content: "·"; margin-right: 6px; color: var(--faint); }
 
-  .timeline { list-style: none; }
-  .timeline li { display: grid; grid-template-columns: 140px 1fr; gap: 16px; padding: 14px 0; }
-  .timeline li + li { border-top: 1px dashed var(--border); }
-  .timeline .when { color: var(--muted); font-size: 0.9rem; }
-  .timeline h3 { font-size: 1rem; }
-  .timeline p { font-size: 0.95rem; }
-  @media (max-width: 600px) { .timeline li { grid-template-columns: 1fr; gap: 4px; } }
+  /* Časová os */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  @media (max-width: 860px) { .cols { grid-template-columns: 1fr; gap: 40px; } }
+  .sub { display: flex; align-items: center; gap: 10px; font-size: 1.1rem; margin-bottom: 20px; }
+  .sub svg { color: var(--accent-text); }
+  .timeline { list-style: none; position: relative; padding-left: 24px; }
+  .timeline::before { content: ""; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--border); border-radius: 2px; }
+  .timeline li { position: relative; padding-bottom: 26px; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -24px; top: 6px; width: 12px; height: 12px; border-radius: 50%;
+    background: var(--bg); border: 2px solid var(--accent);
+  }
+  .timeline li.now::before { background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .timeline .when { font-size: .8rem; font-weight: 600; color: var(--accent-text); letter-spacing: .02em; }
+  .timeline h4 { font-family: "Space Grotesk", sans-serif; font-size: 1.02rem; margin: 2px 0 4px; line-height: 1.35; }
+  .timeline p { font-size: .92rem; }
+  .stack > * + * { margin-top: 40px; }
+  .verify { display: inline-flex; align-items: center; gap: 4px; margin-top: 6px; font-size: .88rem; font-weight: 500; }
 
-  .contact-list { list-style: none; display: grid; gap: 10px; margin-top: 8px; }
-  .contact-list li { display: flex; gap: 12px; }
-  .contact-list .k { color: var(--muted); min-width: 90px; }
+  /* Kontakt */
+  .cta {
+    position: relative; overflow: hidden; border-radius: 24px; padding: clamp(32px, 6vw, 56px);
+    background: var(--surface); border: 1px solid var(--border); text-align: center;
+  }
+  .cta::before {
+    content: ""; position: absolute; inset: -40% -10% auto; height: 300px; pointer-events: none;
+    background: radial-gradient(closest-side, var(--glow), transparent);
+  }
+  .cta > * { position: relative; }
+  .cta h2 { margin: 14px 0 12px; }
+  .cta p { max-width: 520px; margin: 0 auto; font-size: 1.05rem; }
+  .cta .btns { justify-content: center; }
+  .mail { margin-top: 20px; font-size: .9rem; color: var(--faint); }
 
-  footer { padding: 32px 0; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.85rem; }
+  footer { padding: 32px 0 40px; color: var(--faint); font-size: .85rem; }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+
+  /* Jemné objavovanie pri skrolovaní */
+  .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+  .js .reveal.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .js .reveal { opacity: 1; transform: none; transition: none; }
+    .dot::after { animation: none; }
+    .card, .btn { transition: none; }
+  }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); opacity: 0;
+    background: var(--text); color: var(--bg); padding: 10px 18px; border-radius: 10px;
+    font-size: .9rem; font-weight: 500; pointer-events: none; transition: all .25s ease; z-index: 50;
+  }
+  .toast.show { opacity: 1; transform: translate(-50%, 0); }
 </style>
 </head>
 <body>
 
-<nav>
+<!-- Ikony (použité nižšie cez <use>) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2.5 9 2.5 12 0v-5"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+  <symbol id="i-layout" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+  <symbol id="i-bug" viewBox="0 0 24 24"><rect x="7" y="8" width="10" height="12" rx="5"/><path d="M9 8V6a3 3 0 0 1 6 0v2M3 13h4M17 13h4M4 19l3-2M20 19l-3-2M4 7l3 2M20 7l-3 2"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M8 7l-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></symbol>
+  <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol>
+  <symbol id="i-net" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="5" rx="1"/><rect x="3" y="16" width="6" height="5" rx="1"/><rect x="15" y="16" width="6" height="5" rx="1"/><path d="M12 8v4M6 16v-4h12v4"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 4h6a3 3 0 0 1 3 3v13a2 2 0 0 0-2-2H4zM20 4h-6a3 3 0 0 0-1 .2"/><path d="M20 4v14h-7"/></symbol>
+  <symbol id="i-award" viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14L7 22l5-3 5 3-1.5-8"/></symbol>
+  <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M7 17L17 7M8 7h9v9"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+</svg>
+
+<div class="bg-deco" aria-hidden="true"></div>
+
+<nav class="top" id="top-nav">
   <div class="wrap">
-    <a href="#" class="logo">Samuel Bechera</a>
-    <ul>
-      <li><a href="#o-mne">O mne</a></li>
-      <li><a href="#zrucnosti">Zručnosti</a></li>
-      <li><a href="#projekty">Projekty</a></li>
-      <li><a href="#skusenosti">Skúsenosti</a></li>
-      <li><a href="#kontakt">Kontakt</a></li>
+    <a href="#" class="logo" aria-label="Samuel Bechera"><span class="mark">SB</span>Samuel Bechera</a>
+    <ul class="nav-links">
+      <li><a href="#o-mne" data-i18n="nav.about">O mne</a></li>
+      <li><a href="#zrucnosti" data-i18n="nav.skills">Zručnosti</a></li>
+      <li><a href="#projekty" data-i18n="nav.projects">Projekty</a></li>
+      <li><a href="#skusenosti" data-i18n="nav.exp">Skúsenosti</a></li>
+      <li><a href="#kontakt" data-i18n="nav.contact">Kontakt</a></li>
     </ul>
+    <div class="controls">
+      <div class="seg" role="group" aria-label="Jazyk / Language">
+        <button type="button" data-lang="sk" aria-pressed="true" title="Slovensky">SK</button>
+        <button type="button" data-lang="en" aria-pressed="false" title="English">EN</button>
+      </div>
+      <button type="button" class="icon-btn" id="theme-btn" aria-label="Prepnúť svetlý / tmavý režim" title="Svetlý / tmavý režim">
+        <svg class="i moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        <svg class="i sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
   </div>
 </nav>
 
 <header class="hero">
-  <div class="wrap">
-    <span class="tag">Hľadám brigádu / prácu v IT</span>
-    <h1>Ahoj, som Samuel Bechera.</h1>
-    <p class="lead">Študent informatiky na TU v Košiciach. Mám základy z webu, programovania, databáz aj sietí a hľadám prvú príležitosť v IT, kde sa môžem učiť a rásť. Najviac ma lákajú AI nástroje, web a kyberbezpečnosť.</p>
-    <div class="btns">
-      <a href="#kontakt" class="btn primary">Kontaktuj ma</a>
-      <a href="#projekty" class="btn">Pozrieť projekty</a>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="status"><span class="dot" aria-hidden="true"></span><span data-i18n="hero.status">Hľadám brigádu alebo prácu v IT</span></span>
+      <h1><span class="hi" data-i18n="hero.hi">Ahoj, volám sa</span><span class="grad">Samuel Bechera</span></h1>
+      <p class="lead" data-i18n="hero.lead">Študent informatiky na TU v Košiciach. Mám základy z webu, programovania, databáz aj sietí a hľadám prvú príležitosť v IT, kde sa môžem učiť a rásť. Najviac ma lákajú AI nástroje, web a kyberbezpečnosť.</p>
+      <div class="btns">
+        <a href="#kontakt" class="btn primary"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="hero.cta1">Kontaktuj ma</span></a>
+        <a href="#projekty" class="btn"><svg class="i"><use href="#i-down"/></svg><span data-i18n="hero.cta2">Pozrieť projekty</span></a>
+      </div>
+      <ul class="facts">
+        <li><svg class="i"><use href="#i-pin"/></svg><span data-i18n="fact.loc">Košice, Slovensko</span></li>
+        <li><svg class="i"><use href="#i-cap"/></svg><span data-i18n="fact.study">Informatika, TU Košice</span></li>
+        <li><svg class="i"><use href="#i-lang"/></svg><span data-i18n="fact.lang">Slovenčina · angličtina C1</span></li>
+      </ul>
     </div>
+    <div class="avatar" aria-hidden="true"><div class="ring"></div><div class="face">SB</div></div>
   </div>
 </header>
 
 <main>
+  <!-- O MNE -->
   <section id="o-mne">
     <div class="wrap">
-      <h2>O mne</h2>
-      <p>Mám ukončené bakalárske štúdium informatiky na Technickej univerzite v Košiciach a teraz som v 1. ročníku inžinierskeho štúdia. Počas štúdia som programoval, robil webové aplikácie, pracoval s relačnými databázami v SQL a v tíme som robil projekt podľa agilného prístupu.</p>
-      <p>Som skôr kreatívny typ, baví ma vymýšľať riešenia a dôležité mi je, aby aplikácie boli pre ľudí jednoduché a príjemné na používanie. Na projekty aj na učenie bežne používam AI asistentov a chcem sa v tom ďalej zlepšovať. Som otvorený rôznym pozíciám, napríklad vo vývoji webu, testovaní, práci s AI alebo v IT bezpečnosti. Rýchlo sa učím a nové nástroje ma bavia.</p>
+      <span class="eyebrow reveal" data-i18n="about.eyebrow">O mne</span>
+      <h2 class="reveal" data-i18n="about.title">Kto som a čo ma baví</h2>
+      <div class="about">
+        <div class="reveal">
+          <p data-i18n="about.p1">Mám ukončené bakalárske štúdium informatiky na Technickej univerzite v Košiciach a teraz som v 1. ročníku inžinierskeho štúdia. Počas štúdia som programoval, robil webové aplikácie, pracoval s relačnými databázami v SQL a v tíme som robil projekt podľa agilného prístupu.</p>
+          <p data-i18n="about.p2">Som skôr kreatívny typ, baví ma vymýšľať riešenia a dôležité mi je, aby aplikácie boli pre ľudí jednoduché a príjemné na používanie. Na projekty aj na učenie bežne používam AI asistentov a chcem sa v tom ďalej zlepšovať. Rýchlo sa učím a nové nástroje ma bavia.</p>
+        </div>
+        <aside class="panel reveal">
+          <h3 data-i18n="about.open">Som otvorený pozíciám v oblastiach</h3>
+          <ul class="interests">
+            <li><span class="ic"><svg class="i"><use href="#i-spark"/></svg></span><div><strong data-i18n="int.ai">AI a automatizácia</strong><span data-i18n="int.ai.d">Práca s AI nástrojmi a ich využitie v praxi</span></div></li>
+            <li><span class="ic"><svg class="i"><use href="#i-layout"/></svg></span><div><strong data-i18n="int.web">Web a UX</strong><span data-i18n="int.web.d">Tvorba webov, ktoré sa dobre používajú</span></div></li>
+            <li><span class="ic"><svg class="i"><use href="#i-shield"/></svg></span><div><strong data-i18n="int.sec">Kyberbezpečnosť</strong><span data-i18n="int.sec.d">Siete a ochrana systémov (Cisco CCNA)</span></div></li>
+            <li><span class="ic"><svg class="i"><use href="#i-bug"/></svg></span><div><strong data-i18n="int.qa">Testovanie softvéru</strong><span data-i18n="int.qa.d">Hľadanie chýb a overovanie funkčnosti</span></div></li>
+          </ul>
+        </aside>
+      </div>
     </div>
   </section>
 
+  <!-- ZRUČNOSTI -->
   <section id="zrucnosti">
     <div class="wrap">
-      <h2>Zručnosti</h2>
-      <div class="skill-group">
-        <h3>Web a dizajn</h3>
-        <div class="skills"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Figma</span><span>UX / používateľské rozhrania</span></div>
-      </div>
-      <div class="skill-group">
-        <h3>Programovanie a databázy</h3>
-        <div class="skills"><span>Python</span><span>Java</span><span>C</span><span>SQL</span></div>
-      </div>
-      <div class="skill-group">
-        <h3>AI a nástroje</h3>
-        <div class="skills"><span>AI asistenti (ChatGPT, Claude…)</span><span>Git / GitLab</span><span>Jira</span><span>Agilný vývoj</span><span>Manuálne testovanie</span></div>
-      </div>
-      <div class="skill-group">
-        <h3>Siete a bezpečnosť</h3>
-        <div class="skills"><span>Cisco CCNA: Introduction to Networks</span><span>IP adresovanie</span><span>Routing a switching</span><span>Základy sieťovej bezpečnosti</span></div>
-      </div>
-      <div class="skill-group">
-        <h3>Jazyky</h3>
-        <div class="skills"><span>Slovenčina – materinský jazyk</span><span>Angličtina – C1</span></div>
+      <span class="eyebrow reveal" data-i18n="skills.eyebrow">Zručnosti</span>
+      <h2 class="reveal" data-i18n="skills.title">S čím viem pracovať</h2>
+      <div class="skill-grid">
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-layout"/></svg><span data-i18n="sk.web">Web a dizajn</span></h3>
+          <div class="chips"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>React</span><span>Figma</span><span data-i18n="sk.ux">UX / používateľské rozhrania</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-code"/></svg><span data-i18n="sk.prog">Programovanie a databázy</span></h3>
+          <div class="chips"><span>Python</span><span>Java</span><span>C</span><span>SQL</span><span data-i18n="sk.rel">Relačné databázy</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-spark"/></svg><span data-i18n="sk.ai">AI a nástroje</span></h3>
+          <div class="chips"><span data-i18n="sk.aiasst">AI asistenti (ChatGPT, Claude…)</span><span>Git / GitLab</span><span>Jira</span><span data-i18n="sk.agile">Agilný vývoj</span><span data-i18n="sk.manual">Manuálne testovanie</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-net"/></svg><span data-i18n="sk.net">Siete a bezpečnosť</span></h3>
+          <div class="chips"><span>Cisco CCNA ITN</span><span data-i18n="sk.ip">IP adresovanie</span><span>Routing &amp; switching</span><span data-i18n="sk.netsec">Základy sieťovej bezpečnosti</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-chat"/></svg><span data-i18n="sk.langs">Jazyky</span></h3>
+          <div class="chips"><span data-i18n="sk.sk">Slovenčina – materinský jazyk</span><span data-i18n="sk.en">Angličtina – C1</span></div>
+        </div>
+        <div class="skill-card reveal">
+          <h3><svg class="i"><use href="#i-tool"/></svg><span data-i18n="sk.soft">Silné stránky</span></h3>
+          <div class="chips"><span data-i18n="sk.s1">Analytické myslenie</span><span data-i18n="sk.s2">Pozornosť na detaily</span><span data-i18n="sk.s3">Rýchle učenie</span><span data-i18n="sk.s4">Tímová práca</span></div>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- PROJEKTY -->
   <section id="projekty">
     <div class="wrap">
-      <h2>Projekty</h2>
+      <span class="eyebrow reveal" data-i18n="proj.eyebrow">Projekty</span>
+      <h2 class="reveal" data-i18n="proj.title">Na čom som pracoval</h2>
       <div class="projects">
-        <article class="card">
-          <h3>Odšumovanie obrazu</h3>
-          <p>Bakalárska práca. Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
-          <div class="tech"><span>Python</span><span>Spracovanie obrazu</span></div>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">01</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
+          <h3 data-i18n="p1.t">Odšumovanie obrazu</h3>
+          <p data-i18n="p1.d">Skúmal som rôzne typy šumu v digitálnych obrazoch a metódy na ich odstránenie. Metódy som naprogramoval v Pythone a porovnal ich, aby som pre každý typ šumu našiel najvhodnejšiu.</p>
+          <div class="tech"><span>Python</span><span data-i18n="p1.tech">Spracovanie obrazu</span></div>
         </article>
-        <article class="card">
-          <h3>Webová aplikácia na odšumovanie obrázkov</h3>
-          <p>Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">02</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
+          <h3 data-i18n="p2.t">Webová aplikácia na odšumovanie obrázkov</h3>
+          <p data-i18n="p2.d">Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
           <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
         </article>
-        <article class="card">
-          <h3>Tímový softvérový projekt</h3>
-          <p>Projekt na predmet Softvérové inžinierstvo. V tíme sme vyvíjali aplikáciu podľa agilného prístupu.</p>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="p3.badge">Tímový projekt</span></div>
+          <h3 data-i18n="p3.t">Tímový softvérový projekt</h3>
+          <p data-i18n="p3.d">Projekt na predmet Softvérové inžinierstvo. V tíme sme vyvíjali aplikáciu podľa agilného prístupu.</p>
           <div class="tech"><span>Agile</span><span>Git / GitLab</span><span>Jira</span></div>
         </article>
-        <article class="card">
-          <h3>Táto stránka</h3>
-          <p>Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Sedí na mobile aj na počítači a má svetlý aj tmavý režim.</p>
-          <div class="tech"><span>HTML</span><span>CSS</span><span>AI</span></div>
+        <article class="card reveal">
+          <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="p4.badge">Osobný projekt</span></div>
+          <h3 data-i18n="p4.t">Táto stránka</h3>
+          <p data-i18n="p4.d">Osobné portfólio, ktoré som vytvoril s pomocou AI asistenta. Je v slovenčine aj angličtine, funguje na mobile aj na počítači a má svetlý aj tmavý režim.</p>
+          <div class="tech"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>AI</span></div>
         </article>
       </div>
     </div>
   </section>
 
+  <!-- SKÚSENOSTI -->
   <section id="skusenosti">
     <div class="wrap">
-      <h2>Vzdelanie</h2>
-      <ul class="timeline">
-        <li>
-          <div class="when">2026 – teraz</div>
-          <div><h3>Ing. · Informatika · Technická univerzita v Košiciach</h3><p>1. ročník inžinierskeho štúdia.</p></div>
-        </li>
-        <li>
-          <div class="when">2023 – 2026</div>
-          <div><h3>Bc. · Informatika · Technická univerzita v Košiciach</h3><p>Bakalárska práca: Metódy odstránenia šumu a vylepšovania obrazu. Predmety: Databázové systémy, Softvérové inžinierstvo, Webové technológie, Používateľské rozhrania (UX), Programovanie.</p></div>
-        </li>
-        <li>
-          <div class="when">2018 – 2023</div>
-          <div><h3>Cirkevné bilingválne gymnázium, Stará Ľubovňa</h3><p>Maturitná skúška.</p></div>
-        </li>
-      </ul>
-
-      <h2 style="margin-top:48px">Certifikáty</h2>
-      <ul class="timeline">
-        <li>
-          <div class="when">Máj 2025</div>
-          <div><h3>CCNA: Introduction to Networks · Cisco Networking Academy</h3><p>Základy počítačových sietí, IP adresovanie, routing, switching a základy sieťovej bezpečnosti. <a href="https://www.credly.com/badges/67101643-5fda-4e66-982a-5cca48e8103c" target="_blank" rel="noopener">Overiť certifikát →</a></p></div>
-        </li>
-        <li>
-          <div class="when">Apríl 2023</div>
-          <div><h3>Youthpass · Erasmus+</h3><p>Medzinárodný projekt o komunikácii, tímovej práci a medzikultúrnom porozumení.</p></div>
-        </li>
-      </ul>
-
-      <h2 style="margin-top:48px">Pracovné skúsenosti</h2>
-      <ul class="timeline">
-        <li>
-          <div class="when">Leto 2025, 2026</div>
-          <div><h3>Pracovník kúpaliska · sezónna práca</h3><p>Predaj vstupeniek a občerstvenia, obsluha zákazníkov a vedenie pokladne.</p></div>
-        </li>
-        <li>
-          <div class="when">2023 – 2025</div>
-          <div><h3>Pomocný pracovník pri sťahovaní · príležitostne</h3><p>Spoľahlivosť a tímová spolupráca pri fyzicky náročnej práci.</p></div>
-        </li>
-      </ul>
+      <span class="eyebrow reveal" data-i18n="exp.eyebrow">Skúsenosti</span>
+      <h2 class="reveal" data-i18n="exp.title">Vzdelanie a skúsenosti</h2>
+      <div class="cols">
+        <div class="reveal">
+          <h3 class="sub"><svg class="i"><use href="#i-book"/></svg><span data-i18n="exp.edu">Vzdelanie</span></h3>
+          <ul class="timeline">
+            <li class="now">
+              <div class="when" data-i18n="e1.when">2026 – teraz</div>
+              <h4 data-i18n="e1.t">Ing. · Informatika · Technická univerzita v Košiciach</h4>
+              <p data-i18n="e1.d">1. ročník inžinierskeho štúdia.</p>
+            </li>
+            <li>
+              <div class="when">2023 – 2026</div>
+              <h4 data-i18n="e2.t">Bc. · Informatika · Technická univerzita v Košiciach</h4>
+              <p data-i18n="e2.d">Bakalárska práca: Metódy odstránenia šumu a vylepšovania obrazu. Predmety: Databázové systémy, Softvérové inžinierstvo, Webové technológie, Používateľské rozhrania (UX), Programovanie.</p>
+            </li>
+            <li>
+              <div class="when">2018 – 2023</div>
+              <h4 data-i18n="e3.t">Cirkevné bilingválne gymnázium, Stará Ľubovňa</h4>
+              <p data-i18n="e3.d">Maturitná skúška.</p>
+            </li>
+          </ul>
+        </div>
+        <div class="stack reveal">
+          <div>
+            <h3 class="sub"><svg class="i"><use href="#i-award"/></svg><span data-i18n="exp.cert">Certifikáty</span></h3>
+            <ul class="timeline">
+              <li>
+                <div class="when" data-i18n="c1.when">Máj 2025</div>
+                <h4>CCNA: Introduction to Networks · Cisco Networking Academy</h4>
+                <p data-i18n="c1.d">Základy počítačových sietí, IP adresovanie, routing, switching a základy sieťovej bezpečnosti.</p>
+                <a class="verify" href="https://www.credly.com/badges/67101643-5fda-4e66-982a-5cca48e8103c" target="_blank" rel="noopener"><span data-i18n="c1.link">Overiť certifikát</span><svg class="i" style="width:15px;height:15px"><use href="#i-arrow"/></svg></a>
+              </li>
+              <li>
+                <div class="when" data-i18n="c2.when">Apríl 2023</div>
+                <h4>Youthpass · Erasmus+</h4>
+                <p data-i18n="c2.d">Medzinárodný projekt o komunikácii, tímovej práci a medzikultúrnom porozumení.</p>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="sub"><svg class="i"><use href="#i-brief"/></svg><span data-i18n="exp.work">Pracovné skúsenosti</span></h3>
+            <ul class="timeline">
+              <li>
+                <div class="when" data-i18n="w1.when">Leto 2025 a 2026</div>
+                <h4 data-i18n="w1.t">Pracovník kúpaliska · sezónna práca</h4>
+                <p data-i18n="w1.d">Predaj vstupeniek a občerstvenia, obsluha zákazníkov a vedenie pokladne.</p>
+              </li>
+              <li>
+                <div class="when">2023 – 2025</div>
+                <h4 data-i18n="w2.t">Pomocný pracovník pri sťahovaní · príležitostne</h4>
+                <p data-i18n="w2.d">Spoľahlivosť a tímová spolupráca pri fyzicky náročnej práci.</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
+  <!-- KONTAKT -->
   <section id="kontakt">
     <div class="wrap">
-      <h2>Kontakt</h2>
-      <p>Hľadáte niekoho do tímu alebo na brigádu? Pokojne mi napíšte.</p>
-      <ul class="contact-list">
-        <li><span class="k">E-mail</span><a href="mailto:samuelbechera@gmail.com">samuelbechera@gmail.com</a></li>
-        <li><span class="k">Mesto</span><span>Košice, Slovensko</span></li>
-      </ul>
+      <div class="cta reveal">
+        <span class="eyebrow" data-i18n="ct.eyebrow">Kontakt</span>
+        <h2 data-i18n="ct.title">Poďme spolupracovať</h2>
+        <p data-i18n="ct.text">Hľadáte niekoho do tímu alebo na brigádu? Pokojne mi napíšte, rád sa ozvem.</p>
+        <div class="btns">
+          <a class="btn primary" href="mailto:samuelbechera@gmail.com"><svg class="i"><use href="#i-mail"/></svg><span data-i18n="ct.mail">Napísať e-mail</span></a>
+          <button type="button" class="btn" id="copy-btn"><svg class="i"><use href="#i-copy"/></svg><span data-i18n="ct.copy">Kopírovať e-mail</span></button>
+        </div>
+        <p class="mail">samuelbechera@gmail.com · <span data-i18n="fact.loc">Košice, Slovensko</span></p>
+      </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="wrap">© 2026 Samuel Bechera</div>
+  <div class="wrap">
+    <span>© 2026 Samuel Bechera</span>
+    <span data-i18n="ft.made">Vytvorené s pomocou AI</span>
+  </div>
 </footer>
 
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  /* ---------- Preklady do angličtiny ----------
+     Slovenský text je priamo v HTML vyššie, tu je len anglická verzia. */
+  var EN = {
+    'nav.about': 'About', 'nav.skills': 'Skills', 'nav.projects': 'Projects', 'nav.exp': 'Experience', 'nav.contact': 'Contact',
+    'hero.status': 'Open to internships and IT jobs',
+    'hero.hi': 'Hi, my name is',
+    'hero.lead': 'Computer Science student at the Technical University of Košice. I have a foundation in web development, programming, databases and networking, and I’m looking for my first opportunity in IT where I can learn and grow. I’m most drawn to AI tools, the web and cybersecurity.',
+    'hero.cta1': 'Get in touch', 'hero.cta2': 'See my projects',
+    'fact.loc': 'Košice, Slovakia', 'fact.study': 'Computer Science, TU Košice', 'fact.lang': 'Slovak · English C1',
+    'about.eyebrow': 'About', 'about.title': 'Who I am and what I enjoy',
+    'about.p1': 'I hold a Bachelor’s degree in Computer Science from the Technical University of Košice and I’m now in the first year of my Master’s (Ing.) studies. During my studies I programmed, built web applications, worked with relational databases in SQL and developed a team project using an agile approach.',
+    'about.p2': 'I’m more of a creative type – I enjoy coming up with solutions and I care about applications being simple and pleasant to use. I use AI assistants every day for projects and learning, and I want to keep getting better at it. I learn fast and enjoy picking up new tools.',
+    'about.open': 'I’m open to roles in',
+    'int.ai': 'AI & automation', 'int.ai.d': 'Working with AI tools and applying them in practice',
+    'int.web': 'Web & UX', 'int.web.d': 'Building websites that are easy to use',
+    'int.sec': 'Cybersecurity', 'int.sec.d': 'Networks and system protection (Cisco CCNA)',
+    'int.qa': 'Software testing', 'int.qa.d': 'Finding bugs and verifying functionality',
+    'skills.eyebrow': 'Skills', 'skills.title': 'What I work with',
+    'sk.web': 'Web & design', 'sk.ux': 'UX / user interfaces',
+    'sk.prog': 'Programming & databases', 'sk.rel': 'Relational databases',
+    'sk.ai': 'AI & tools', 'sk.aiasst': 'AI assistants (ChatGPT, Claude…)', 'sk.agile': 'Agile development', 'sk.manual': 'Manual testing',
+    'sk.net': 'Networking & security', 'sk.ip': 'IP addressing', 'sk.netsec': 'Network security basics',
+    'sk.langs': 'Languages', 'sk.sk': 'Slovak – native', 'sk.en': 'English – C1',
+    'sk.soft': 'Strengths', 'sk.s1': 'Analytical thinking', 'sk.s2': 'Attention to detail', 'sk.s3': 'Fast learner', 'sk.s4': 'Teamwork',
+    'proj.eyebrow': 'Projects', 'proj.title': 'What I’ve worked on',
+    'p1.badge': 'Bachelor’s thesis', 'p1.t': 'Image denoising',
+    'p1.d': 'I researched different types of noise in digital images and methods for removing them. I implemented the methods in Python and compared them to find the most suitable one for each type of noise.',
+    'p1.tech': 'Image processing',
+    'p2.badge': 'University project', 'p2.t': 'Image denoising web app',
+    'p2.d': 'A project for the User Interfaces course. I designed and built a web interface for denoising images, focused on simple controls and a good user experience.',
+    'p3.badge': 'Team project', 'p3.t': 'Team software project',
+    'p3.d': 'A project for the Software Engineering course. As a team, we developed an application using an agile approach.',
+    'p4.badge': 'Personal project', 'p4.t': 'This website',
+    'p4.d': 'My personal portfolio, built with the help of an AI assistant. It’s available in Slovak and English, works on both mobile and desktop, and has light and dark themes.',
+    'exp.eyebrow': 'Experience', 'exp.title': 'Education & experience',
+    'exp.edu': 'Education', 'exp.cert': 'Certificates', 'exp.work': 'Work experience',
+    'e1.when': '2026 – present', 'e1.t': 'Master’s (Ing.) · Computer Science · Technical University of Košice', 'e1.d': 'First year of Master’s studies.',
+    'e2.t': 'Bachelor’s (Bc.) · Computer Science · Technical University of Košice',
+    'e2.d': 'Thesis: Methods for image denoising and enhancement. Courses: Database Systems, Software Engineering, Web Technologies, User Interfaces (UX), Programming.',
+    'e3.t': 'Church Bilingual Grammar School, Stará Ľubovňa', 'e3.d': 'Secondary school leaving exam (Maturita).',
+    'c1.when': 'May 2025', 'c1.d': 'Computer networking fundamentals, IP addressing, routing, switching and network security basics.', 'c1.link': 'Verify certificate',
+    'c2.when': 'April 2023', 'c2.d': 'International project on communication, teamwork and intercultural understanding.',
+    'w1.when': 'Summers 2025 & 2026', 'w1.t': 'Swimming pool staff · seasonal job', 'w1.d': 'Selling tickets and refreshments, customer service and managing the cash register.',
+    'w2.t': 'Moving assistant · occasional work', 'w2.d': 'Reliability and teamwork in physically demanding work.',
+    'ct.eyebrow': 'Contact', 'ct.title': 'Let’s work together',
+    'ct.text': 'Looking for someone to join your team or for an internship? Feel free to send me a message – I’ll be happy to get back to you.',
+    'ct.mail': 'Send an email', 'ct.copy': 'Copy email',
+    'ft.made': 'Built with the help of AI'
+  };
+  var META = {
+    sk: { title: 'Samuel Bechera – Portfólio', desc: 'Samuel Bechera – študent informatiky z Košíc. Web, AI, programovanie a kyberbezpečnosť.',
+          copied: 'E-mail skopírovaný', theme: 'Prepnúť svetlý / tmavý režim' },
+    en: { title: 'Samuel Bechera – Portfolio', desc: 'Samuel Bechera – Computer Science student from Košice, Slovakia. Web, AI, programming and cybersecurity.',
+          copied: 'Email copied', theme: 'Toggle light / dark mode' }
+  };
+
+  function store(key, val) { try { localStorage.setItem(key, val); } catch (e) {} }
+  function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
+
+  /* ---------- Jazyk ---------- */
+  var nodes = document.querySelectorAll('[data-i18n]');
+  var SK = [];
+  nodes.forEach(function (el, i) { SK[i] = el.innerHTML; });
+  var currentLang = 'sk';
+
+  function setLang(lang) {
+    currentLang = lang;
+    nodes.forEach(function (el, i) {
+      var k = el.getAttribute('data-i18n');
+      el.innerHTML = (lang === 'en' && EN[k]) ? EN[k] : SK[i];
+    });
+    document.documentElement.lang = lang;
+    document.title = META[lang].title;
+    document.querySelector('meta[name="description"]').setAttribute('content', META[lang].desc);
+    document.getElementById('theme-btn').setAttribute('aria-label', META[lang].theme);
+    document.getElementById('theme-btn').setAttribute('title', META[lang].theme);
+    document.querySelectorAll('.seg button').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-lang') === lang));
+    });
+  }
+
+  /* Automaticky: uložená voľba, inak jazyk prehliadača (SK/CZ → slovensky, inak anglicky) */
+  function detectLang() {
+    var saved = load('lang');
+    if (saved === 'sk' || saved === 'en') return saved;
+    var langs = navigator.languages || [navigator.language || 'sk'];
+    for (var i = 0; i < langs.length; i++) {
+      var l = (langs[i] || '').toLowerCase();
+      if (l.indexOf('sk') === 0 || l.indexOf('cs') === 0) return 'sk';
+      if (l.indexOf('en') === 0) return 'en';
+    }
+    return 'en';
+  }
+  setLang(detectLang());
+
+  document.querySelectorAll('.seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var l = b.getAttribute('data-lang');
+      store('lang', l);
+      setLang(l);
+    });
+  });
+
+  /* ---------- Motív ---------- */
+  var root = document.documentElement;
+  document.getElementById('theme-btn').addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    store('theme', next);
+  });
+  /* Ak si návštevník motív sám nezvolil, sleduj nastavenie systému */
+  if (window.matchMedia) {
+    var mq = matchMedia('(prefers-color-scheme: dark)');
+    var onChange = function (e) { if (!load('theme')) root.setAttribute('data-theme', e.matches ? 'dark' : 'light'); };
+    if (mq.addEventListener) mq.addEventListener('change', onChange); else if (mq.addListener) mq.addListener(onChange);
+  }
+
+  /* ---------- Kopírovanie e-mailu ---------- */
+  var toast = document.getElementById('toast'), toastTimer;
+  function showToast(msg) {
+    toast.textContent = msg; toast.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.classList.remove('show'); }, 2000);
+  }
+  document.getElementById('copy-btn').addEventListener('click', function () {
+    var mail = 'samuelbechera@gmail.com';
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(mail).then(function () { showToast(META[currentLang].copied); },
+        function () { window.location.href = 'mailto:' + mail; });
+    } else { window.location.href = 'mailto:' + mail; }
+  });
+
+  /* ---------- Navigácia: okraj pri skrolovaní + aktívna sekcia ---------- */
+  var nav = document.getElementById('top-nav');
+  function onScroll() { nav.classList.toggle('scrolled', window.scrollY > 8); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var links = document.querySelectorAll('.nav-links a');
+    var spy = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) {
+          links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); });
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+
+    var rev = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); rev.unobserve(en.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.reveal').forEach(function (el) { rev.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
 </body>
 </html>
