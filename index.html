@@ -361,6 +361,7 @@
   <symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h9"/></symbol>
   <symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M3 8v8l9 5 9-5V8M12 13v8"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M10 8.5l5 3.5-5 3.5z"/></symbol>
   <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
 </svg>
 
@@ -511,13 +512,14 @@
           <div class="top-row"><span class="num">04</span><span class="badge" data-i18n="pc.badge">Webová hra</span></div>
           <h3>ColorSudoku</h3>
           <p data-i18n="pc.d">Sudoku, v ktorom sa namiesto čísel dopĺňajú farby. Hra má konzolovú aj webovú verziu, prihlasovanie používateľov, rebríček najlepších skóre, hodnotenia a komentáre cez REST API a ukladanie do databázy. Vytvoril som ju sám na predmet Komponentové programovanie.</p>
+          <div class="links"><a href="https://www.youtube.com/watch?v=1Fp6KZ0c6v4" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg><span data-i18n="vid">Pozrieť video</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Java</span><span>Spring Boot</span><span>Spring Security</span><span>JPA</span><span>PostgreSQL</span></div>
         </article>
         <article class="card reveal">
           <div class="top-row"><span class="num">05</span><span class="badge" data-i18n="pr.badge">Výskum</span></div>
           <h3 data-i18n="pr.t">Životný cyklus issues na GitHube</h3>
-          <p data-i18n="pr.d">Vedecký článok vo formáte IEEE o tom, aké zložité sú životné cykly hlásení chýb a požiadaviek (issues) v open-source projektoch. Cez GitHub API som zozbieral a v Pythone analyzoval 681 issues a 4&nbsp;257 udalostí zo siedmich repozitárov.</p>
-          <div class="tech"><span>Python</span><span>GitHub API</span><span data-i18n="pr.tech">Analýza dát</span><span>LaTeX</span></div>
+          <p data-i18n="pr.d">Vedecký článok vo formáte IEEE (zatiaľ rozpracovaný) o tom, aké rôznorodé sú životné cykly hlásení chýb a požiadaviek (issues) v open-source projektoch, či závisia od typu issue a ako súvisia s tým, ako dlho ostanú otvorené. Cez GitHub API som zozbieral a v Pythone analyzoval 5&nbsp;682 issues a 72&nbsp;472 udalostí z 31 populárnych repozitárov, vrátane štatistiky a analýzy prežitia.</p>
+          <div class="tech"><span>Python</span><span>GitHub API</span><span data-i18n="pr.tech">Štatistika</span><span>LaTeX</span></div>
         </article>
         <article class="card reveal">
           <div class="top-row"><span class="num">06</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
@@ -529,6 +531,7 @@
           <div class="top-row"><span class="num">07</span><span class="badge" data-i18n="p2.badge">Školský projekt</span></div>
           <h3 data-i18n="p2.t">Webová aplikácia na odšumovanie obrázkov</h3>
           <p data-i18n="p2.d">Projekt na predmet Používateľské rozhrania. Navrhol a vytvoril som webové rozhranie na odšumovanie obrázkov s dôrazom na jednoduché ovládanie a dobrý používateľský zážitok.</p>
+          <div class="links"><a href="https://www.youtube.com/watch?v=OopjPfRAJ-o" target="_blank" rel="noopener"><svg class="i"><use href="#i-play"/></svg><span data-i18n="vid">Pozrieť video</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Web</span><span>UX</span><span>Figma</span></div>
         </article>
         <article class="card reveal">
@@ -672,8 +675,8 @@
     'pc.badge': 'Web game',
     'pc.d': 'Sudoku where you fill in colours instead of numbers. The game has a console and a web version, user login, a high-score leaderboard, ratings and comments via a REST API, and database storage. I built it on my own for the Component Programming course.',
     'pr.badge': 'Research', 'pr.t': 'Issue lifecycles on GitHub',
-    'pr.d': 'An IEEE-style research paper on how complex the lifecycles of bug reports and feature requests (issues) are in open-source projects. Using the GitHub API, I collected and analysed in Python 681 issues and 4,257 events from seven repositories.',
-    'pr.tech': 'Data analysis',
+    'pr.d': 'An IEEE-style research paper (work in progress) on how varied the lifecycles of bug reports and feature requests (issues) are in open-source projects, whether they depend on the issue type, and how they relate to how long issues stay open. Using the GitHub API, I collected and analysed in Python 5,682 issues and 72,472 events from 31 popular repositories, including statistics and survival analysis.',
+    'pr.tech': 'Statistics', 'vid': 'Watch the video',
     'p1.badge': 'Bachelor’s thesis', 'p1.t': 'Image denoising',
     'p1.d': 'I researched different types of noise in digital images and methods for removing them. I implemented the methods in Python and compared them to find the most suitable one for each type of noise.',
     'p1.tech': 'Image processing',
