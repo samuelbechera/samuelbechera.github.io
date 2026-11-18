@@ -279,6 +279,9 @@
 
   .card p.mine { margin-top: 12px; flex: 0; font-size: .9rem; }
   .card p.mine strong { color: var(--text); font-weight: 600; }
+  .card.wide { grid-column: 1 / -1; }
+  .card.wide .feat-grid { margin-top: 2px; }
+  .card.wide .mine-wrap { margin-top: 0; }
   .card .mine-wrap { margin-top: 14px; font-size: .9rem; color: var(--muted); }
   .card .mine-wrap strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 6px; }
   .card ul.mine { list-style: none; display: grid; gap: 5px; }
@@ -507,10 +510,13 @@
           <div class="tech"><span>Unity</span><span>C#</span><span>Game jam</span></div>
           </div>
         </article>
-        <article class="card reveal">
+        <article class="card wide reveal">
           <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="po.badge">Tímový projekt · IBM</span></div>
+          <div class="feat-grid">
+          <div>
           <h3>Občan.AI</h3>
           <p data-i18n="po.d">Tímový projekt FEI TUKE v spolupráci s IBM Slovensko, na ktorom pracujem ako člen vývojového tímu. AI asistent, ktorý odpovedá na otázky o vybavovaní na mestskom úrade (parkovacia karta, daň za psa…) z oficiálnych dokumentov, pri každej odpovedi uvedie zdroj a vie predvyplniť formulár.</p>
+          </div>
           <div class="mine-wrap">
             <strong data-i18n="po.mt">Na čom som pracoval:</strong>
             <ul class="mine">
@@ -521,6 +527,7 @@
               <li data-i18n="po.m5">prihlasovacie a registračné obrazovky vo Flutteri</li>
               <li data-i18n="po.m6">automatické testy a technická dokumentácia</li>
             </ul>
+          </div>
           </div>
           <div class="tech"><span>Python</span><span>FastAPI</span><span>Flutter</span><span>Firebase</span><span>PostgreSQL</span><span>AI</span></div>
         </article>
