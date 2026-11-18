@@ -264,6 +264,15 @@
   .thumb { display: block; margin: -26px -26px 22px; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 15px 15px 0 0; border-bottom: 1px solid var(--border); background: var(--surface-2); }
   .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
   .card:hover .thumb img { transform: scale(1.04); }
+  .card.media { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; padding: 0; overflow: hidden; }
+  .card.media .thumb { margin: 0; border-radius: 0; border-bottom: 0; border-right: 1px solid var(--border); aspect-ratio: auto; min-height: 100%; }
+  .card.media .body { padding: clamp(24px, 4vw, 32px) clamp(24px, 4vw, 32px) clamp(24px, 4vw, 32px) 0; display: flex; flex-direction: column; }
+  .card.media h3 { font-size: clamp(1.25rem, 2.6vw, 1.5rem); }
+  @media (max-width: 760px) {
+    .card.media { grid-template-columns: 1fr; gap: 0; }
+    .card.media .thumb { aspect-ratio: 3 / 2; border-right: 0; border-bottom: 1px solid var(--border); }
+    .card.media .body { padding: 24px; }
+  }
   .card .links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 16px; font-size: .9rem; font-weight: 600; }
   .card .links a { display: inline-flex; align-items: center; gap: 4px; }
   .card .links svg { width: 15px; height: 15px; }
@@ -478,13 +487,15 @@
           </div>
           <div class="tech wide"><span>React</span><span>TypeScript</span><span>Python</span><span>FastAPI</span><span>PostgreSQL</span><span>Docker</span><span>OpenAI API</span></div>
         </article>
-        <article class="card reveal">
+        <article class="card media reveal">
           <a class="thumb" href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener" tabindex="-1" aria-hidden="true"><img src="img/just-one-more-reel.webp" alt="" width="960" height="640" loading="lazy"></a>
+          <div class="body">
           <div class="top-row"><span class="num">02</span><span class="badge">Game Jam Košice 2026</span></div>
           <h3>Just One More Reel</h3>
           <p data-i18n="pg.d">Krátka 3D hra o prokrastinácii. Namiesto učenia scroluješ na mobile a musíš nazbierať 50 „Doom Points“ tak, aby ťa nenachytala mama. Hru narúšajú udalosti ako výpadok Wi-Fi či otvorené okno. Vytvorili sme ju v tíme RunTime Rebels počas game jamu a je zverejnená na itch.io.</p>
           <div class="links"><a href="https://runtimerebels.itch.io/just-one-more-scroll" target="_blank" rel="noopener"><span data-i18n="pg.play">Hrať na itch.io</span><svg class="i"><use href="#i-arrow"/></svg></a></div>
           <div class="tech"><span>Unity</span><span>C#</span><span data-i18n="pg.team">Tímový projekt</span></div>
+          </div>
         </article>
         <article class="card reveal">
           <div class="top-row"><span class="num">03</span><span class="badge" data-i18n="p1.badge">Bakalárska práca</span></div>
